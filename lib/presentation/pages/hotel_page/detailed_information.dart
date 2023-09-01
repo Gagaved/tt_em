@@ -15,7 +15,7 @@ class _DetailedInformation extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
-              height: 15,
+              height: 17,
             ),
             _Title(),
             _Peculiarities(),
@@ -54,25 +54,21 @@ class _Peculiarities extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Wrap(
-      children: [
-        Padding(
-          padding: EdgeInsets.fromLTRB(0, 8, 8, 0),
-          child: Peculiar(text: '3-я линия'),
-        ),
-        Padding(
-          padding: EdgeInsets.fromLTRB(0, 8, 8, 0),
-          child: Peculiar(text: 'Платный Wi-Fi в фойе'),
-        ),
-        Padding(
-          padding: EdgeInsets.fromLTRB(0, 8, 8, 0),
-          child: Peculiar(text: '30 км до аэропорта'),
-        ),
-        Padding(
-          padding: EdgeInsets.fromLTRB(0, 8, 8, 0),
-          child: Peculiar(text: '1 км до пляжа'),
-        ),
-      ],
+    return BlocBuilder<HotelBloc, HotelState>(
+      builder: (context, state) {
+        if (state.isInit == false) {
+          return const SizedBox.shrink(); //todo replace to skeleton
+        }
+        List<Widget> peculiarities = state.hotel!.aboutTheHotel.peculiarities
+            .map(
+              (e) => Padding(
+                padding: const EdgeInsets.fromLTRB(0, 8, 8, 0),
+                child: Peculiar(text: e),
+              ),
+            )
+            .toList();
+        return Wrap(children: peculiarities);
+      },
     );
   }
 }
@@ -82,11 +78,16 @@ class _Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text(
-        'Отель VIP-класса с собственными гольф полями. Высокий уровнь сервиса. Рекомендуем для респектабельного отдыха. Отель принимает гостей от 18 лет!',
-        style: Theme.of(context).textTheme.bodyMedium!,
-      ),
+    return BlocBuilder<HotelBloc, HotelState>(
+      builder: (context, state) {
+        if (state.isInit == false) {
+          return const SizedBox.shrink(); //todo replace to skeleton
+        }
+        return Text(
+          state.hotel!.aboutTheHotel.description,
+          style: Theme.of(context).textTheme.bodyMedium!,
+        );
+      },
     );
   }
 }
@@ -105,14 +106,29 @@ class _DescriptionButtons extends StatelessWidget {
           )),
       child: Column(
         children: [
-          _DescriptionButton(),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(50,0,32,0),
-                child: Container(height: 2,color: AppColors.backgroundColor,),
-              ),
-          _DescriptionButton(),
-          Container(height: 1,color: AppColors.backgroundColor,),
-          _DescriptionButton()
+          _DescriptionButton(
+            title: AppLocalizations.of(context)!.amenities,
+            subtitle: AppLocalizations.of(context)!.essentials,
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(50, 0, 32, 0),
+            child: Container(
+              height: 1,
+              color: AppColors.backgroundColor,
+            ),
+          ),
+          _DescriptionButton(
+            title: AppLocalizations.of(context)!.whatIsIncluded,
+            subtitle: AppLocalizations.of(context)!.essentials,
+          ),
+          Container(
+            height: 1,
+            color: AppColors.backgroundColor,
+          ),
+          _DescriptionButton(
+            title: AppLocalizations.of(context)!.whatIsNotIncluded,
+            subtitle: AppLocalizations.of(context)!.essentials,
+          ),
         ],
       ),
     );
@@ -120,20 +136,23 @@ class _DescriptionButtons extends StatelessWidget {
 }
 
 class _DescriptionButton extends StatelessWidget {
-  const _DescriptionButton({Key? key}) : super(key: key);
+  const _DescriptionButton(
+      {Key? key, required this.title, required this.subtitle})
+      : super(key: key);
+  final String title;
+  final String subtitle;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       leading: const Icon(Icons.ios_share_sharp),
-      title: Text('title', style: Theme.of(context).textTheme.bodyMedium),
-      subtitle: Text('subtitle',
+      title: Text(title, style: Theme.of(context).textTheme.bodyMedium),
+      subtitle: Text(subtitle,
           style: Theme.of(context)
               .textTheme
               .bodySmall!
               .copyWith(color: AppColors.textGrayColor)),
-
-    trailing: const Icon(Icons.arrow_forward_ios),
+      trailing: const Icon(Icons.arrow_forward_ios),
     );
   }
 }

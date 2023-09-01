@@ -38,12 +38,19 @@ dependencies:
   cupertino_icons: ^1.0.2
   page_transition: 2.0.9
   provider: 6.0.5
-  intl: any
-  intl_translation: 0.18.2
   equatable: 2.0.5
   shared_preferences: 2.2.0
+  auto_size_text: ^3.0.0
+  carousel_slider: ^4.2.1
+  cached_network_image: ^3.2.3
+  #localization
+  intl: any
+  intl_translation: 0.18.2
   flutter_localizations:
     sdk: flutter
+
+
+
 
 dev_dependencies:
   flutter_test:

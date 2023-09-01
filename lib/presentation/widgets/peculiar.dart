@@ -12,8 +12,8 @@ class Peculiar extends StatelessWidget {
       decoration: const BoxDecoration(
           color: AppColors.peculiaritiesLightGrayColor,
           borderRadius: BorderRadius.vertical(
-            top: Radius.circular(5),
-            bottom: Radius.circular(5),
+            top: Radius.circular(7),
+            bottom: Radius.circular(7),
           )),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5.0),

@@ -1,4 +1,13 @@
 {
-  "@@locale": "ru"
-
+  "@@locale": "ru",
+  "hotelPageTitle": "Отель",
+  "goToRoomSelection":  "К выбору номера",
+  "fromPrice": "от",
+  "amenities": "Удобства",
+  "essentials": "Самое необходимое",
+  "whatIsIncluded": "Что включено",
+  "whatIsNotIncluded": "Что не включено",
+  "goToBookingButton": "Выбрать номер",
+  "moreAboutRoom": "Подробнее о номере",
+  "loadImageErrorMessage": "Не удалось загрузить изображение"
 }

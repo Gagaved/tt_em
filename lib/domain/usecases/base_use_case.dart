@@ -8,7 +8,7 @@ abstract class BaseUseCase<T> {
     T? result;
     try {
       result = await func();
-      var useCaseResult = UseCaseResult<T>.success(result: result);
+      var useCaseResult = UseCaseResult<T>.success(resultValue: result);
       return useCaseResult;
     } catch (e) {
       //todo add other error handlers
@@ -18,7 +18,13 @@ abstract class BaseUseCase<T> {
         }
       }
       if (e is AppException) {
-        /// todo implement error handler for AppException
+        switch(e.code){
+          case "local_data_does_not_exist":
+            var useCaseResult =
+            UseCaseResult<T>.error(error: UseCaseError.internalAppServiceError,
+                errorMessage: 'Internal app error');
+            return useCaseResult;
+        }
       }
       var useCaseResult =
           UseCaseResult<T>.error(error: UseCaseError.internalAppServiceError,
@@ -31,12 +37,12 @@ abstract class BaseUseCase<T> {
 class UseCaseResult<T> {
   final UseCaseError error;
   final String? errorMessage;
-  final T? result;
+  final T? resultValue;
 
-  UseCaseResult.success({this.errorMessage, required this.result})
+  UseCaseResult.success({this.errorMessage, required this.resultValue})
       : error = UseCaseError.noError;
 
-  UseCaseResult.error({this.errorMessage, required this.error}) : result = null;
+  UseCaseResult.error({this.errorMessage, required this.error}) : resultValue = null;
 }
 
 enum UseCaseError {

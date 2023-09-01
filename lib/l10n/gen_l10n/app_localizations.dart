@@ -91,6 +91,65 @@ abstract class AppLocalizations {
     Locale('ru')
   ];
 
+  /// No description provided for @hotelPageTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отель'**
+  String get hotelPageTitle;
+
+  /// No description provided for @goToRoomSelection.
+  ///
+  /// In ru, this message translates to:
+  /// **'К выбору номера'**
+  String get goToRoomSelection;
+
+  /// No description provided for @fromPrice.
+  ///
+  /// In ru, this message translates to:
+  /// **'от'**
+  String get fromPrice;
+
+  /// No description provided for @amenities.
+  ///
+  /// In ru, this message translates to:
+  /// **'Удобства'**
+  String get amenities;
+
+  /// No description provided for @essentials.
+  ///
+  /// In ru, this message translates to:
+  /// **'Самое необходимое'**
+  String get essentials;
+
+  /// No description provided for @whatIsIncluded.
+  ///
+  /// In ru, this message translates to:
+  /// **'Что включено'**
+  String get whatIsIncluded;
+
+  /// No description provided for @whatIsNotIncluded.
+  ///
+  /// In ru, this message translates to:
+  /// **'Что не включено'**
+  String get whatIsNotIncluded;
+
+  /// No description provided for @goToBookingButton.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выбрать номер'**
+  String get goToBookingButton;
+
+  /// No description provided for @moreAboutRoom.
+  ///
+  /// In ru, this message translates to:
+  /// **'Подробнее о номере'**
+  String get moreAboutRoom;
+
+  /// No description provided for @loadImageErrorMessage.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не удалось загрузить изображение'**
+  String get loadImageErrorMessage;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tt_em/presentation/pages/apartments_page/apartaments_page.dart';
+import 'package:tt_em/presentation/pages/rooms_page/rooms_page.dart';
 import 'package:tt_em/presentation/pages/booking_page/booking_page.dart';
 import 'package:tt_em/presentation/pages/hotel_page/hotel_page.dart';
 import 'package:tt_em/presentation/pages/payment_page/payment_page.dart';
@@ -11,9 +11,9 @@ class AppRouter {
       case '/':
         return MaterialPageRoute(
             builder: (_) => HotelPage(args: args), settings: settings);
-      case '/apartments':
+      case '/rooms':
         return MaterialPageRoute(
-            builder: (_) => ApartmentsPage(args: args), settings: settings);
+            builder: (_) => RoomsPage(args: args), settings: settings);
       case '/booking':
         return MaterialPageRoute(
             builder: (_) => BookingPage(args: args), settings: settings);

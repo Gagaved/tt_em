@@ -92,10 +92,10 @@ class AppThemeDataHolder {
       ],
       useMaterial3: true,
       scaffoldBackgroundColor: AppColors.backgroundColor,
-      highlightColor: AppColors.highlightColor,
-      hoverColor: AppColors.hoverColor,
-      focusColor: AppColors.focusColor,
-      splashColor: AppColors.splashColor,
+      //highlightColor: AppColors.highlightColor,
+      //hoverColor: AppColors.hoverColor,
+      //focusColor: AppColors.focusColor,
+      //splashColor: AppColors.splashColor,
       cardTheme: const CardTheme(
         surfaceTintColor: Colors.transparent,
         color: AppColors.surfaceColor,
@@ -118,7 +118,7 @@ class AppThemeDataHolder {
       elevatedButtonTheme: const ElevatedButtonThemeData(
           style: ButtonStyle(
             backgroundColor: MaterialStatePropertyAll(AppColors.primaryColor),
-        overlayColor: MaterialStatePropertyAll(AppColors.secondaryColor),
+        //overlayColor: MaterialStatePropertyAll(AppColors.primaryColor),
       )),
       textTheme: const TextTheme(
           titleSmall: TextStyle(
@@ -130,6 +130,7 @@ class AppThemeDataHolder {
             fontFamily: 'SF Pro Display',
             fontWeight: FontWeight.w500,
             fontSize: 26.4,
+              height: 1.2,
           ),
           titleLarge: TextStyle(
             fontFamily: 'SF Pro Display',
@@ -144,7 +145,7 @@ class AppThemeDataHolder {
           bodySmall: TextStyle(
             fontFamily: 'SF Pro Display',
             fontSize: 16,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w500,
           ),
       bodyMedium: TextStyle(
         fontFamily: 'SF Pro Display',
