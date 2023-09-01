@@ -6,19 +6,20 @@ import 'package:tt_em/presentation/pages/payment_page/payment_page.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
+    final args = settings.arguments;
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(
-            builder: (_) => const HotelPage(), settings: settings);
-      case '/home':
+            builder: (_) => HotelPage(args: args), settings: settings);
+      case '/apartments':
         return MaterialPageRoute(
-            builder: (_) => const ApartmentsPage(), settings: settings);
-      case '/private_policy':
+            builder: (_) => ApartmentsPage(args: args), settings: settings);
+      case '/booking':
         return MaterialPageRoute(
-            builder: (_) => const BookingPage(), settings: settings);
-      case '/terms_of_use':
+            builder: (_) => BookingPage(args: args), settings: settings);
+      case '/payment':
         return MaterialPageRoute(
-            builder: (_) => const PaymentPage(), settings: settings);
+            builder: (_) => PaymentPage(args: args), settings: settings);
       default:
         throw Exception('unknown route: ${settings.name}');
     }

@@ -1,67 +1,94 @@
 import 'package:flutter/material.dart';
 import 'package:tt_em/presentation/constants/colors.dart';
 
-class TaskStyle extends ThemeExtension<TaskStyle> {
-  final Color? correctColor;
+class RatingStyle extends ThemeExtension<RatingStyle> {
+  final Color main1;
+  final Color second1;
+  final Color main2;
+  final Color second2;
+  final Color main3;
+  final Color second3;
+  final Color main4;
+  final Color second4;
+  final Color main5;
+  final Color second5;
 
-  final Color? wrongColor;
-
-  final Color? unknownColor;
-
-  final Color? correctOnPrimary;
-  final Color? wrongOnPrimary;
-  final Color? onCorrect;
-  final Color? onWrong;
-
-  const TaskStyle({
-    this.correctOnPrimary,
-    this.wrongOnPrimary,
-    this.correctColor,
-    this.wrongColor,
-    this.unknownColor,
-    this.onCorrect,
-    this.onWrong,
-  });
+  const RatingStyle(
+      {required this.main1,
+      required this.second1,
+      required this.main2,
+      required this.second2,
+      required this.main3,
+      required this.second3,
+      required this.main4,
+      required this.second4,
+      required this.main5,
+      required this.second5});
 
   @override
-  TaskStyle copyWith({
-    final Color? correctOnPrimary,
-    final Color? onCorrect,
-    final Color? wrongOnPrimary,
-    final Color? onWrong,
-    final Color? correctColor,
-    final Color? wrongColor,
-    final Color? unknownColor,
+  RatingStyle copyWith({
+    final Color? main1,
+    final Color? second1,
+    final Color? main2,
+    final Color? second2,
+    final Color? main3,
+    final Color? second3,
+    final Color? main4,
+    final Color? second4,
+    final Color? main5,
+    final Color? second5,
   }) {
-    return TaskStyle(
-      correctOnPrimary: correctOnPrimary ?? this.correctOnPrimary,
-      wrongOnPrimary: wrongOnPrimary ?? this.wrongOnPrimary,
-      correctColor: correctColor ?? this.correctColor,
-      wrongColor: wrongColor ?? this.wrongColor,
-      unknownColor: unknownColor ?? this.unknownColor,
-      onCorrect: onCorrect ?? this.onCorrect,
-      onWrong: onCorrect ?? this.onWrong,
+    return RatingStyle(
+      main1: main1 ?? this.main1,
+      second1: second1 ?? this.second1,
+      main2: main2 ?? this.main2,
+      second2: second2 ?? this.second2,
+      main3: main3 ?? this.main3,
+      second3: second3 ?? this.second3,
+      main4: main4 ?? this.main4,
+      second4: second4 ?? this.second4,
+      main5: main5 ?? this.main5,
+      second5: second5 ?? this.second5,
     );
   }
 
   @override
-  TaskStyle lerp(ThemeExtension<TaskStyle>? other, double t) {
-    if (other is! TaskStyle) {
+  RatingStyle lerp(ThemeExtension<RatingStyle>? other, double t) {
+    if (other is! RatingStyle) {
       return this;
     }
-    return TaskStyle(
-        correctOnPrimary:
-        Color.lerp(correctOnPrimary, other.correctOnPrimary, t),
-        wrongOnPrimary: Color.lerp(wrongOnPrimary, other.wrongOnPrimary, t),
-        correctColor: Color.lerp(correctColor, other.correctColor, t),
-        wrongColor: Color.lerp(wrongColor, other.wrongColor, t),
-        unknownColor: unknownColor);
+    return RatingStyle(
+        main1: Color.lerp(main1, other.main1, t)!,
+        main2: Color.lerp(main2, other.main2, t)!,
+        main3: Color.lerp(main3, other.main3, t)!,
+        main4: Color.lerp(main4, other.main4, t)!,
+        main5: Color.lerp(main5, other.main5, t)!,
+        second1: Color.lerp(second1, other.second1, t)!,
+        second2: Color.lerp(second2, other.second2, t)!,
+        second3: Color.lerp(second3, other.second3, t)!,
+        second4: Color.lerp(second4, other.second4, t)!,
+        second5: Color.lerp(second5, other.second5, t)!);
   }
 }
+
+
 
 class AppThemeDataHolder {
   static ThemeData appThemeData = ThemeData(
       extensions: const <ThemeExtension<dynamic>>[
+        RatingStyle(
+          //todo add colors for 1,2,3,4 rating
+          main1: AppColors.ratingMainColor1,
+          main2: AppColors.ratingMainColor2,
+          main3: AppColors.ratingMainColor3,
+          main4: AppColors.ratingMainColor4,
+          main5: AppColors.ratingMainColor5,
+          second1: AppColors.ratingSecondColor1,
+          second2: AppColors.ratingSecondColor2,
+          second3: AppColors.ratingSecondColor3,
+          second4: AppColors.ratingSecondColor4,
+          second5: AppColors.ratingSecondColor5,
+        )
       ],
       useMaterial3: true,
       scaffoldBackgroundColor: AppColors.backgroundColor,
@@ -76,16 +103,13 @@ class AppThemeDataHolder {
       iconTheme: const IconThemeData(
         color: AppColors.primaryColor,
       ),
-      buttonTheme: const ButtonThemeData(
-        buttonColor: AppColors.primaryColor,
-      ),
       iconButtonTheme: IconButtonThemeData(
           style: ButtonStyle(
-            iconColor: MaterialStateProperty.all<Color>(
-              AppColors.primaryColor,
-            ),
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
-          )),
+        iconColor: MaterialStateProperty.all<Color>(
+          AppColors.primaryColor,
+        ),
+        backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
+      )),
       inputDecorationTheme: const InputDecorationTheme(
           hintStyle: TextStyle(color: AppColors.onSurfaceColor)),
       scrollbarTheme: const ScrollbarThemeData(
@@ -93,9 +117,41 @@ class AppThemeDataHolder {
       ),
       elevatedButtonTheme: const ElevatedButtonThemeData(
           style: ButtonStyle(
-            overlayColor: MaterialStatePropertyAll(AppColors.secondaryColor),
-          )),
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(),
+            backgroundColor: MaterialStatePropertyAll(AppColors.primaryColor),
+        overlayColor: MaterialStatePropertyAll(AppColors.secondaryColor),
+      )),
+      textTheme: const TextTheme(
+          titleSmall: TextStyle(
+            fontFamily: 'SF Pro Display',
+            fontWeight: FontWeight.w500,
+            fontSize: 21.6,
+          ),
+          titleMedium: TextStyle(
+            fontFamily: 'SF Pro Display',
+            fontWeight: FontWeight.w500,
+            fontSize: 26.4,
+          ),
+          titleLarge: TextStyle(
+            fontFamily: 'SF Pro Display',
+            fontWeight: FontWeight.w600,
+            fontSize: 36,
+          ),
+          headlineSmall: TextStyle(
+            fontFamily: 'SF Pro Display',
+            fontWeight: FontWeight.w500,
+            fontSize: 19.2,
+          ),
+          bodySmall: TextStyle(
+            fontFamily: 'SF Pro Display',
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+          ),
+      bodyMedium: TextStyle(
+        fontFamily: 'SF Pro Display',
+        fontSize: 19.2,
+        height: 1.2,
+        fontWeight: FontWeight.w400,
+      )),
       colorScheme: ColorScheme.fromSeed(
         seedColor: AppColors.primaryColor,
         primary: AppColors.primaryColor,
