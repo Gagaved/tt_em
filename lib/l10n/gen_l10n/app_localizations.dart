@@ -181,6 +181,12 @@ abstract class AppLocalizations {
   /// **'Кол-во ночей'**
   String get numberOfNightsBookingInformation;
 
+  /// No description provided for @nightsTrailingBookingInformation.
+  ///
+  /// In ru, this message translates to:
+  /// **'ночей'**
+  String get nightsTrailingBookingInformation;
+
   /// No description provided for @hotelBookingInformation.
   ///
   /// In ru, this message translates to:
@@ -193,11 +199,173 @@ abstract class AppLocalizations {
   /// **'Номер'**
   String get roomBookingInformation;
 
-  /// No description provided for @nutrition.
+  /// No description provided for @nutritionBookingInformation.
   ///
   /// In ru, this message translates to:
   /// **'Питание'**
-  String get nutrition;
+  String get nutritionBookingInformation;
+
+  /// No description provided for @phoneBookingInformation.
+  ///
+  /// In ru, this message translates to:
+  /// **'Номер телефона'**
+  String get phoneBookingInformation;
+
+  /// No description provided for @emailBookingInformation.
+  ///
+  /// In ru, this message translates to:
+  /// **'Почта'**
+  String get emailBookingInformation;
+
+  /// No description provided for @buyerInformationTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Информация о покупателе'**
+  String get buyerInformationTitle;
+
+  /// No description provided for @dataInfoAndCheckInfo.
+  ///
+  /// In ru, this message translates to:
+  /// **'Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту'**
+  String get dataInfoAndCheckInfo;
+
+  /// No description provided for @nameLabelInput.
+  ///
+  /// In ru, this message translates to:
+  /// **'Имя'**
+  String get nameLabelInput;
+
+  /// No description provided for @surnameLabelInput.
+  ///
+  /// In ru, this message translates to:
+  /// **'Фамилия'**
+  String get surnameLabelInput;
+
+  /// No description provided for @birthDayLabelInput.
+  ///
+  /// In ru, this message translates to:
+  /// **'День рождения'**
+  String get birthDayLabelInput;
+
+  /// No description provided for @citizenshipLabelInput.
+  ///
+  /// In ru, this message translates to:
+  /// **'Гражданство'**
+  String get citizenshipLabelInput;
+
+  /// No description provided for @internationalPassportNumber.
+  ///
+  /// In ru, this message translates to:
+  /// **'Номер загранпаспорта'**
+  String get internationalPassportNumber;
+
+  /// No description provided for @passportValidityPeriod.
+  ///
+  /// In ru, this message translates to:
+  /// **'Срок действия загранпаспорта'**
+  String get passportValidityPeriod;
+
+  /// No description provided for @addTouristTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Добавить туриста'**
+  String get addTouristTitle;
+
+  /// No description provided for @tourPrice.
+  ///
+  /// In ru, this message translates to:
+  /// **'Тур'**
+  String get tourPrice;
+
+  /// No description provided for @fuelCharge.
+  ///
+  /// In ru, this message translates to:
+  /// **'Топливный сбор'**
+  String get fuelCharge;
+
+  /// No description provided for @serviceCharge.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сервисный сбор'**
+  String get serviceCharge;
+
+  /// No description provided for @totalPrice.
+  ///
+  /// In ru, this message translates to:
+  /// **'К оплате'**
+  String get totalPrice;
+
+  /// No description provided for @payButton.
+  ///
+  /// In ru, this message translates to:
+  /// **'Оплатить'**
+  String get payButton;
+
+  /// No description provided for @touristTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Турист'**
+  String get touristTitle;
+
+  /// No description provided for @touristTitle1.
+  ///
+  /// In ru, this message translates to:
+  /// **'Первый турист'**
+  String get touristTitle1;
+
+  /// No description provided for @touristTitle2.
+  ///
+  /// In ru, this message translates to:
+  /// **'Второй турист'**
+  String get touristTitle2;
+
+  /// No description provided for @touristTitle3.
+  ///
+  /// In ru, this message translates to:
+  /// **'Третий турист'**
+  String get touristTitle3;
+
+  /// No description provided for @touristTitle4.
+  ///
+  /// In ru, this message translates to:
+  /// **'Четвёртый турист'**
+  String get touristTitle4;
+
+  /// No description provided for @touristTitle5.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пятый турист'**
+  String get touristTitle5;
+
+  /// No description provided for @touristTitle6.
+  ///
+  /// In ru, this message translates to:
+  /// **'Шестой турист'**
+  String get touristTitle6;
+
+  /// No description provided for @touristTitle7.
+  ///
+  /// In ru, this message translates to:
+  /// **'Седьмой турист'**
+  String get touristTitle7;
+
+  /// No description provided for @touristTitle8.
+  ///
+  /// In ru, this message translates to:
+  /// **'Восьмой турист'**
+  String get touristTitle8;
+
+  /// No description provided for @touristTitle9.
+  ///
+  /// In ru, this message translates to:
+  /// **'Девятый турист'**
+  String get touristTitle9;
+
+  /// No description provided for @touristTitle10.
+  ///
+  /// In ru, this message translates to:
+  /// **'Десятый турист'**
+  String get touristTitle10;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

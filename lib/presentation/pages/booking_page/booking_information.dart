@@ -10,18 +10,51 @@ class _BookingInformation extends StatelessWidget {
       roundedTopBorder: true,
       child: BlocBuilder<BookingBloc, BookingState>(
         builder: (context, state) {
+          if (state.isInit == false) return const SizedBox.shrink();
           return Column(
             children: [
               const SizedBox(
-                height: 10,
+                height: 15,
               ),
               _RowInfo(
                   title:
                       AppLocalizations.of(context)!.departureBookingInformation,
                   value: state.bookingInformation!.departure),
               const SizedBox(
-                height: 10,
+                height: 15,
               ),
+              _RowInfo(
+                  title: AppLocalizations.of(context)!
+                      .arrivalCountryBookingInformation,
+                  value: state.bookingInformation!.arrivalCountry),
+              const SizedBox(
+                height: 15,
+              ),
+              _RowInfo(
+                  title: AppLocalizations.of(context)!.datesBookingInformation,
+                  value:
+                      '${state.bookingInformation!.tourDateStart} - ${state.bookingInformation!.tourDateStart}'),
+              const SizedBox(
+                height: 15,
+              ),
+              _RowInfo(
+                  title: AppLocalizations.of(context)!
+                      .numberOfNightsBookingInformation,
+                  value:
+                      '${state.bookingInformation!.numberOfNights} ${AppLocalizations.of(context)!.nightsTrailingBookingInformation}'),
+              const SizedBox(
+                height: 15,
+              ),
+              _RowInfo(
+                  title: AppLocalizations.of(context)!.hotelBookingInformation,
+                  value: state.bookingInformation!.hotelName),
+              const SizedBox(
+                height: 15,
+              ),
+              _RowInfo(
+                  title: AppLocalizations.of(context)!.roomBookingInformation,
+                  value: state.bookingInformation!.room),
+              SizedBox(height: 15,),
             ],
           );
         },
@@ -41,7 +74,7 @@ class _RowInfo extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          flex: 1,
+          flex: 4,
           child: Text(
             title,
             style: Theme.of(context)
@@ -51,7 +84,7 @@ class _RowInfo extends StatelessWidget {
           ),
         ),
         Expanded(
-          flex: 2,
+          flex: 6,
           child: Text(value, style: Theme.of(context).textTheme.bodyMedium!),
         ),
       ],

@@ -50,11 +50,95 @@ class AppLocalizationsRu extends AppLocalizations {
   String get numberOfNightsBookingInformation => 'Кол-во ночей';
 
   @override
+  String get nightsTrailingBookingInformation => 'ночей';
+
+  @override
   String get hotelBookingInformation => 'Отель';
 
   @override
   String get roomBookingInformation => 'Номер';
 
   @override
-  String get nutrition => 'Питание';
+  String get nutritionBookingInformation => 'Питание';
+
+  @override
+  String get phoneBookingInformation => 'Номер телефона';
+
+  @override
+  String get emailBookingInformation => 'Почта';
+
+  @override
+  String get buyerInformationTitle => 'Информация о покупателе';
+
+  @override
+  String get dataInfoAndCheckInfo => 'Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту';
+
+  @override
+  String get nameLabelInput => 'Имя';
+
+  @override
+  String get surnameLabelInput => 'Фамилия';
+
+  @override
+  String get birthDayLabelInput => 'День рождения';
+
+  @override
+  String get citizenshipLabelInput => 'Гражданство';
+
+  @override
+  String get internationalPassportNumber => 'Номер загранпаспорта';
+
+  @override
+  String get passportValidityPeriod => 'Срок действия загранпаспорта';
+
+  @override
+  String get addTouristTitle => 'Добавить туриста';
+
+  @override
+  String get tourPrice => 'Тур';
+
+  @override
+  String get fuelCharge => 'Топливный сбор';
+
+  @override
+  String get serviceCharge => 'Сервисный сбор';
+
+  @override
+  String get totalPrice => 'К оплате';
+
+  @override
+  String get payButton => 'Оплатить';
+
+  @override
+  String get touristTitle => 'Турист';
+
+  @override
+  String get touristTitle1 => 'Первый турист';
+
+  @override
+  String get touristTitle2 => 'Второй турист';
+
+  @override
+  String get touristTitle3 => 'Третий турист';
+
+  @override
+  String get touristTitle4 => 'Четвёртый турист';
+
+  @override
+  String get touristTitle5 => 'Пятый турист';
+
+  @override
+  String get touristTitle6 => 'Шестой турист';
+
+  @override
+  String get touristTitle7 => 'Седьмой турист';
+
+  @override
+  String get touristTitle8 => 'Восьмой турист';
+
+  @override
+  String get touristTitle9 => 'Девятый турист';
+
+  @override
+  String get touristTitle10 => 'Десятый турист';
 }

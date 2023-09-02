@@ -124,12 +124,12 @@ class AppThemeDataHolder {
           titleSmall: TextStyle(
             fontFamily: 'SF Pro Display',
             fontWeight: FontWeight.w500,
-            fontSize: 21.6,
+            fontSize: 20,
           ),
           titleMedium: TextStyle(
             fontFamily: 'SF Pro Display',
             fontWeight: FontWeight.w500,
-            fontSize: 26.4,
+            fontSize: 25,
               height: 1.2,
           ),
           titleLarge: TextStyle(
@@ -140,7 +140,7 @@ class AppThemeDataHolder {
           headlineSmall: TextStyle(
             fontFamily: 'SF Pro Display',
             fontWeight: FontWeight.w500,
-            fontSize: 19.2,
+            fontSize: 18.2,
           ),
           bodySmall: TextStyle(
             fontFamily: 'SF Pro Display',
@@ -149,7 +149,7 @@ class AppThemeDataHolder {
           ),
       bodyMedium: TextStyle(
         fontFamily: 'SF Pro Display',
-        fontSize: 19.2,
+        fontSize: 18.2,
         height: 1.2,
         fontWeight: FontWeight.w400,
       )),

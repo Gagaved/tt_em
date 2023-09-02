@@ -6,7 +6,7 @@ import 'package:tt_em/l10n/gen_l10n/app_localizations.dart';
 import 'package:tt_em/presentation/bloc/rooms/rooms_bloc.dart';
 import 'package:tt_em/presentation/constants/colors.dart';
 import 'package:tt_em/presentation/pages/booking_page/booking_page.dart';
-import 'package:tt_em/presentation/widgets/content_holder.dart';
+import 'package:tt_em/presentation/widgets/app_content_card.dart';
 import 'package:tt_em/presentation/widgets/peculiar.dart';
 import 'package:tt_em/presentation/widgets/photo_carousel.dart';
 

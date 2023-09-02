@@ -5,7 +5,7 @@ import 'package:tt_em/presentation/bloc/hotel/hotel_bloc.dart';
 import 'package:tt_em/presentation/constants/colors.dart';
 import 'package:tt_em/presentation/pages/rooms_page/rooms_page.dart';
 import 'package:tt_em/presentation/utils/color_by_rating.dart';
-import 'package:tt_em/presentation/widgets/content_holder.dart';
+import 'package:tt_em/presentation/widgets/app_content_card.dart';
 import 'package:tt_em/presentation/widgets/peculiar.dart';
 import 'package:tt_em/presentation/widgets/photo_carousel.dart';
 
