@@ -5,7 +5,7 @@ class _DetailedInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ContentHolder(
+    return AppContentCard(
       roundedTopBorder: true,
       roundedBottomBorder: true,
       child: Container(

@@ -7,8 +7,10 @@ class _HotelPhotoCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HotelBloc, HotelState>(
       builder: (context, state) {
-        if(state.isInit==false)return const SizedBox.shrink();
-        return PhotoCarousel(imageRefs: state.hotel!.imageUrls,);
+        if (state.isInit == false) return const SizedBox.shrink();
+        return PhotoCarousel(
+          imageRefs: state.hotel!.imageUrls,
+        );
       },
     );
   }
@@ -21,26 +23,35 @@ class _GoToRoomSelectionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15.0),
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.of(context).pushNamed('/rooms');
-        },
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20), // <-- Radius
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15.0),
-          child: Center(
-              child: Text(
+      child: BlocBuilder<HotelBloc, HotelState>(
+        builder: (context, state) {
+          if (state.isInit == false) return const SizedBox.shrink();//todo replace to skeleton
+          return ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                return RoomsPage(
+                  hotel: state.hotel!,
+                );
+              }));
+            },
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20), // <-- Radius
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15.0),
+              child: Center(
+                  child: Text(
                 AppLocalizations.of(context)!.goToRoomSelection,
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium!
                     .copyWith(color: Colors.white),
               )),
-        ),
+            ),
+          );
+        },
       ),
     );
   }

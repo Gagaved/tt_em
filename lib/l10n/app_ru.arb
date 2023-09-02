@@ -9,5 +9,13 @@
   "whatIsNotIncluded": "Что не включено",
   "goToBookingButton": "Выбрать номер",
   "moreAboutRoom": "Подробнее о номере",
-  "loadImageErrorMessage": "Не удалось загрузить изображение"
+  "loadImageErrorMessage": "Не удалось загрузить изображение",
+  "bookingPageTitle": "Бронирование",
+  "departureBookingInformation":"Вылет из",
+  "datesBookingInformation":"Даты",
+  "arrivalCountryBookingInformation":"Страна, город",
+  "numberOfNightsBookingInformation":"Кол-во ночей",
+  "hotelBookingInformation":"Отель",
+  "roomBookingInformation":"Номер",
+   "nutrition":"Питание"
 }

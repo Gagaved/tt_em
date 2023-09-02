@@ -1,12 +1,13 @@
-part of 'hotel_page.dart';
+part of 'booking_page.dart';
 
-class _MainInformation extends StatelessWidget {
-  const _MainInformation({Key? key}) : super(key: key);
+
+class _HotelInformation extends StatelessWidget {
+  const _HotelInformation({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return const AppContentCard(
-      roundedTopBorder: false,
+      roundedTopBorder: true,
       roundedBottomBorder: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -19,8 +20,6 @@ class _MainInformation extends StatelessWidget {
           SizedBox(height: 10),
           _HotelAddress(),
           SizedBox(height: 10),
-          _MinimalPrice(),
-          SizedBox(height: 10),
         ],
       ),
     );
@@ -32,11 +31,10 @@ class _Rating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HotelBloc, HotelState>(
+    return BlocBuilder<BookingBloc, BookingState>(
       builder: (context, state) {
-        if (state.isInit == false)
-          return const SizedBox.shrink(); //todo replace to skeleton
-        int rating = state.hotel!.rating;
+        if (state.isInit == false) return const SizedBox.shrink(); //todo replace to skeleton
+        int rating = state.bookingInformation!.rating;
         RatingColor ratingColor = getColorByRating(rating, context);
         return Row(children: [
           Container(
@@ -64,7 +62,7 @@ class _Rating extends StatelessWidget {
                 ),
                 Text(
                   //Localizations.rating1,
-                  state.hotel!.ratingName,
+                  state.bookingInformation!.ratingName,
                   style: Theme
                       .of(context)
                       .textTheme
@@ -87,11 +85,11 @@ class _HotelName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HotelBloc, HotelState>(
+    return BlocBuilder<BookingBloc, BookingState>(
       builder: (context, state) {
         if (state.isInit == false)
           return const SizedBox.shrink(); //todo replace to skeleton
-        return Text(state.hotel!.name,
+        return Text(state.bookingInformation!.hotelName,
             style: Theme
                 .of(context)
                 .textTheme
@@ -106,10 +104,10 @@ class _HotelAddress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HotelBloc, HotelState>(
+    return BlocBuilder<BookingBloc, BookingState>(
         builder: (context, state) {
           if (state.isInit == false) return const SizedBox.shrink(); //todo replace to skeleton
-          return Text(state.hotel!.address,
+          return Text(state.bookingInformation!.hotelAddress,
               style: Theme
                   .of(context)
                   .textTheme
@@ -118,41 +116,3 @@ class _HotelAddress extends StatelessWidget {
         });
   }
 }
-
-class _MinimalPrice extends StatelessWidget {
-  const _MinimalPrice({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<HotelBloc, HotelState>(
-        builder: (context, state)
-    {
-      if (state.isInit == false) return const SizedBox.shrink(); //todo replace to skeleton
-      return Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Text(
-            '${AppLocalizations.of(context)!.fromPrice} ${state.hotel!
-                .minimalPrice} ₽',
-            style: Theme
-                .of(context)
-                .textTheme
-                .titleLarge,
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: Text(state.hotel!.priceForIt,
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(color: AppColors.textGrayColor, height: 1)),
-              )),
-        ],
-      );});
-    }
-  }

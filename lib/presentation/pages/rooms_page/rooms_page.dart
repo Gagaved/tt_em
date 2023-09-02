@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tt_em/domain/model/hotel.dart';
 import 'package:tt_em/domain/model/room.dart';
 import 'package:tt_em/l10n/gen_l10n/app_localizations.dart';
 import 'package:tt_em/presentation/bloc/rooms/rooms_bloc.dart';
 import 'package:tt_em/presentation/constants/colors.dart';
+import 'package:tt_em/presentation/pages/booking_page/booking_page.dart';
 import 'package:tt_em/presentation/widgets/content_holder.dart';
 import 'package:tt_em/presentation/widgets/peculiar.dart';
 import 'package:tt_em/presentation/widgets/photo_carousel.dart';
@@ -13,12 +15,12 @@ part 'room_photo_carousel.dart';
 
 
 class RoomsPage extends StatelessWidget {
-  const RoomsPage({Key? key, this.args}) : super(key: key);
-  final Object? args;
+  const RoomsPage({Key? key, required this.hotel}) : super(key: key);
+  final Hotel hotel;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RoomsBloc(),
+      create: (context) => RoomsBloc(hotel),
       child: Scaffold(
         appBar: PreferredSize(
       preferredSize: const Size.fromHeight(60.0),
@@ -71,7 +73,7 @@ class _RoomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ContentHolder(
+        AppContentCard(
             roundedBottomBorder: false,
             roundedTopBorder: true,
             child: Column(
@@ -85,7 +87,7 @@ class _RoomCard extends StatelessWidget {
                 _RoomInformation(
                   room: room,
                 ),
-                const _GoToBookingButton()
+                _GoToBookingButton(room.id)
               ],
             )),
       ],
@@ -95,15 +97,19 @@ class _RoomCard extends StatelessWidget {
 
 
 class _GoToBookingButton extends StatelessWidget {
-  const _GoToBookingButton();
-
+  const _GoToBookingButton(this.roomId);
+  final int roomId;
   @override
   Widget build(BuildContext context) {
      return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15.0),
       child: ElevatedButton(
         onPressed: () {
-          Navigator.of(context).pushNamed('/booking');
+          Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+            return BookingPage(
+              roomId: roomId,
+            );
+          }));
         },
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(

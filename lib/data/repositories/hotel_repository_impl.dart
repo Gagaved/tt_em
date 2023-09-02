@@ -1,8 +1,9 @@
+import 'package:tt_em/domain/model/booking_information.dart';
 import 'package:tt_em/domain/model/hotel.dart';
 import 'package:tt_em/domain/model/room.dart';
 import 'package:tt_em/domain/repositories/hotel_repository.dart';
 
-class HotelRepositoryImpl implements HotelRepository{
+class HotelRepositoryImpl implements HotelRepository {
   @override
   Future<Hotel> getHotelById() async {
     // TODO: implement getHotel
@@ -14,9 +15,17 @@ class HotelRepositoryImpl implements HotelRepository{
     // TODO: implement getRoomsByHotelId
     throw UnimplementedError();
   }
+
+  @override
+  Future<BookingInformation> getBookingInformationByRoomId(int roomId) {
+    // TODO: implement getBookingInformationByRoomId
+    throw UnimplementedError();
+  }
+
+
 }
 
-class HotelRepositoryMockImpl implements HotelRepository{
+class HotelRepositoryMockImpl implements HotelRepository {
   @override
   Future<Hotel> getHotelById() async {
     final jsonMap = {
@@ -70,7 +79,11 @@ class HotelRepositoryMockImpl implements HotelRepository{
           "name": "Люкс номер с видом на море",
           "price": 289400,
           "price_per": "За 7 ночей с перелетом",
-          "peculiarities": ["Все включено", "Кондиционер", "Собственный бассейн"],
+          "peculiarities": [
+            "Все включено",
+            "Кондиционер",
+            "Собственный бассейн"
+          ],
           "image_urls": [
             "https://mmf5angy.twic.pics/ahstatic/www.ahstatic.com/photos/b1j0_roskdc_00_p_1024x768.jpg?ritok=65&twic=v1/cover=800x600",
             "https://www.google.com/search?q=%D0%BD%D0%BE%D0%BC%D0%B5%D1%80+%D0%BB%D1%8E%D0%BA%D1%81+%D0%B2+%D0%BE%D1%82%D0%B5%D0%BB%D0%B8+%D0%B5%D0%B3%D0%B8%D0%BF%D1%82%D0%B0+%D1%81+%D1%81%D0%BE%D0%B1%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D0%BC+%D0%B1%D0%B0%D1%81%D1%81%D0%B5%D0%B9%D0%BD%D0%BE%D0%BC&tbm=isch&ved=2ahUKEwilufKp-4KBAxUfJxAIHR4uAToQ2-cCegQIABAA&oq=%D0%BD%D0%BE%D0%BC%D0%B5%D1%80+%D0%BB%D1%8E%D0%BA%D1%81+%D0%B2+%D0%BE%D1%82%D0%B5%D0%BB%D0%B8+%D0%B5%D0%B3%D0%B8%D0%BF%D1%82%D0%B0+%D1%81+%D1%81%D0%BE%D0%B1%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D0%BC+%D0%B1%D0%B0%D1%81%D1%81%D0%B5%D0%B9%D0%BD%D0%BE%D0%BC&gs_lcp=CgNpbWcQAzoECCMQJ1CqAVi6HGDmHWgAcAB4AIABXIgB3wySAQIyNZgBAKABAaoBC2d3cy13aXotaW1nwAEB&sclient=img&ei=Y3fuZOX7KJ_OwPAPntyE0AM&bih=815&biw=1440#imgrc=Nr2wzh3vuY4jEM&imgdii=zTCXWbFgrQ5HBM",
@@ -80,12 +93,40 @@ class HotelRepositoryMockImpl implements HotelRepository{
       ]
     };
 
-    List<Map<String,dynamic>> roomsJson = jsonMap['rooms']!;
+    List<Map<String, dynamic>> roomsJson = jsonMap['rooms']!;
     // Преобразуйте данные JSON в список объектов Room
-    final List<Room> rooms = roomsJson.map((roomJson) => Room.fromMap(roomJson)).toList();
+    final List<Room> rooms = roomsJson.map((roomJson) => Room.fromMap(roomJson))
+        .toList();
 
     // Верните список номеров
     return rooms;
   }
 
+  @override
+  Future<BookingInformation> getBookingInformationByRoomId(int roomId) async {
+    // Ваша логика для получения информации о бронировании по номеру комнаты (roomId).
+    // В данном случае, мы вернем фиктивный объект BookingInformation.
+
+    final bookingInfo = BookingInformation(
+      id: 1,
+      hotelName: "Лучший пятизвездочный отель в Хургаде, Египет",
+      hotelAddress: "Madinat Makadi, Safaga Road, Makadi Bay, Египет",
+      rating: 5,
+      ratingName: "Превосходно",
+      departure: "Москва",
+      arrivalCountry: "Египет, Хургада",
+      tourDateStart: "19.09.2023",
+      tourDateStop: "27.09.2023",
+      numberOfNights: 7,
+      room: "Люкс номер с видом на море",
+      nutrition: "Все включено",
+      tourPrice: 289400,
+      fuelCharge: 9300,
+      serviceCharge: 2150,
+    );
+    // Задержка для имитации асинхронного запроса к серверу.
+    await Future.delayed(const Duration(seconds: 1));
+
+    return bookingInfo;
+  }
 }

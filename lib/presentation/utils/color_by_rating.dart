@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tt_em/presentation/theme/theme.dart';
 
 final class RatingColor {
@@ -19,11 +18,11 @@ getColorByRating(int rating,
     case 1:
       throw Exception('unimplemented rating color: ${1}');
     case 2:
-      throw Exception('unimplemented rating color: ${1}');
+      throw Exception('unimplemented rating color: ${2}');
     case 3:
-      throw Exception('unimplemented rating color: ${1}');
+      throw Exception('unimplemented rating color: ${3}');
     case 4:
-      throw Exception('unimplemented rating color: ${1}');
+      throw Exception('unimplemented rating color: ${4}');
     case 5:
       return RatingColor(Theme.of(context).extension<RatingStyle>()!.main5, Theme.of(context).extension<RatingStyle>()!.second5);
   }

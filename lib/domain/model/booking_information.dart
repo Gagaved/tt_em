@@ -1,59 +1,75 @@
-import 'package:equatable/equatable.dart';
-import 'package:tt_em/domain/model/hotel.dart';
-import 'package:tt_em/domain/model/room.dart';
+class BookingInformation {
+  int id;
+  String hotelName;
+  String hotelAddress;
+  int rating;
+  String ratingName;
+  String departure;
+  String arrivalCountry;
+  String tourDateStart;
+  String tourDateStop;
+  int numberOfNights;
+  String room;
+  String nutrition;
+  int tourPrice;
+  int fuelCharge;
+  int serviceCharge;
 
-class BookingInformation extends Equatable {
-  final Hotel? hotel;
-  final Room? room;
-
-  @override
-  List<Object?> get props => [hotel,room];
-
-//<editor-fold desc="Data Methods">
-  const BookingInformation({
-    this.hotel,
-    this.room,
+  BookingInformation({
+    required this.id,
+    required this.hotelName,
+    required this.hotelAddress,
+    required this.rating,
+    required this.ratingName,
+    required this.departure,
+    required this.arrivalCountry,
+    required this.tourDateStart,
+    required this.tourDateStop,
+    required this.numberOfNights,
+    required this.room,
+    required this.nutrition,
+    required this.tourPrice,
+    required this.fuelCharge,
+    required this.serviceCharge,
   });
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is BookingInformation &&
-          runtimeType == other.runtimeType &&
-          hotel == other.hotel &&
-          room == other.room);
-
-  @override
-  int get hashCode => hotel.hashCode ^ room.hashCode;
-
-  @override
-  String toString() {
-    return 'BookingInformation{' + ' hotel: $hotel,' + ' room: $room,' + '}';
-  }
-
-  BookingInformation copyWith({
-    Hotel? hotel,
-    Room? room,
-  }) {
+  factory BookingInformation.fromJson(Map<String, dynamic> json) {
     return BookingInformation(
-      hotel: hotel ?? this.hotel,
-      room: room ?? this.room,
+      id: json['id'],
+      hotelName: json['hotel_name'],
+      hotelAddress: json['hotel_address'],
+      rating: json['horating'],
+      ratingName: json['rating_name'],
+      departure: json['departure'],
+      arrivalCountry: json['arrival_country'],
+      tourDateStart: json['tour_date_start'],
+      tourDateStop: json['tour_date_stop'],
+      numberOfNights: json['number_of_nights'],
+      room: json['room'],
+      nutrition: json['nutrition'],
+      tourPrice: json['tour_price'],
+      fuelCharge: json['fuel_charge'],
+      serviceCharge: json['service_charge'],
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
-      'hotel': this.hotel,
-      'room': this.room,
+      'id': id,
+      'hotel_name': hotelName,
+      'hotel_address': hotelAddress,
+      'horating': rating,
+      'rating_name': ratingName,
+      'departure': departure,
+      'arrival_country': arrivalCountry,
+      'tour_date_start': tourDateStart,
+      'tour_date_stop': tourDateStop,
+      'number_of_nights': numberOfNights,
+      'room': room,
+      'nutrition': nutrition,
+      'tour_price': tourPrice,
+      'fuel_charge': fuelCharge,
+      'service_charge': serviceCharge,
     };
   }
-
-  factory BookingInformation.fromMap(Map<String, dynamic> map) {
-    return BookingInformation(
-      hotel: map['hotel'] as Hotel,
-      room: map['room'] as Room,
-    );
-  }
-
-//</editor-fold>
 }

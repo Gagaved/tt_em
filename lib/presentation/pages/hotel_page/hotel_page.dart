@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tt_em/l10n/gen_l10n/app_localizations.dart';
 import 'package:tt_em/presentation/bloc/hotel/hotel_bloc.dart';
 import 'package:tt_em/presentation/constants/colors.dart';
+import 'package:tt_em/presentation/pages/rooms_page/rooms_page.dart';
 import 'package:tt_em/presentation/utils/color_by_rating.dart';
 import 'package:tt_em/presentation/widgets/content_holder.dart';
 import 'package:tt_em/presentation/widgets/peculiar.dart';
@@ -33,7 +34,7 @@ class HotelPage extends StatelessWidget {
         body: const SingleChildScrollView(
           child: Column(
             children: [
-              ContentHolder(
+              AppContentCard(
                   roundedBottomBorder: false,
                   roundedTopBorder: false,
                   child: _HotelPhotoCarousel()),
@@ -45,7 +46,7 @@ class HotelPage extends StatelessWidget {
               SizedBox(
                 height: 12,
               ),
-              ContentHolder(
+              AppContentCard(
                   roundedTopBorder: false,
                   roundedBottomBorder: false,
                   child: _GoToRoomSelectionButton()),

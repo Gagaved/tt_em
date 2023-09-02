@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ContentHolder extends StatelessWidget {
-  const ContentHolder(
+class AppContentCard extends StatelessWidget {
+  const AppContentCard(
       {Key? key,
       this.child,
       this.roundedTopBorder = true,
@@ -17,9 +17,9 @@ class ContentHolder extends StatelessWidget {
       decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.vertical(
-            top: roundedTopBorder ? const Radius.circular(12) : Radius.zero,
+            top: roundedTopBorder ? const Radius.circular(15) : Radius.zero,
             bottom:
-                roundedBottomBorder ? const Radius.circular(12) : Radius.zero,
+                roundedBottomBorder ? const Radius.circular(15) : Radius.zero,
           )),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 0),

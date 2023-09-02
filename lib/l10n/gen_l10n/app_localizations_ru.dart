@@ -33,4 +33,28 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get loadImageErrorMessage => 'Не удалось загрузить изображение';
+
+  @override
+  String get bookingPageTitle => 'Бронирование';
+
+  @override
+  String get departureBookingInformation => 'Вылет из';
+
+  @override
+  String get datesBookingInformation => 'Даты';
+
+  @override
+  String get arrivalCountryBookingInformation => 'Страна, город';
+
+  @override
+  String get numberOfNightsBookingInformation => 'Кол-во ночей';
+
+  @override
+  String get hotelBookingInformation => 'Отель';
+
+  @override
+  String get roomBookingInformation => 'Номер';
+
+  @override
+  String get nutrition => 'Питание';
 }

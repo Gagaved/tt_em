@@ -150,6 +150,54 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Не удалось загрузить изображение'**
   String get loadImageErrorMessage;
+
+  /// No description provided for @bookingPageTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Бронирование'**
+  String get bookingPageTitle;
+
+  /// No description provided for @departureBookingInformation.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вылет из'**
+  String get departureBookingInformation;
+
+  /// No description provided for @datesBookingInformation.
+  ///
+  /// In ru, this message translates to:
+  /// **'Даты'**
+  String get datesBookingInformation;
+
+  /// No description provided for @arrivalCountryBookingInformation.
+  ///
+  /// In ru, this message translates to:
+  /// **'Страна, город'**
+  String get arrivalCountryBookingInformation;
+
+  /// No description provided for @numberOfNightsBookingInformation.
+  ///
+  /// In ru, this message translates to:
+  /// **'Кол-во ночей'**
+  String get numberOfNightsBookingInformation;
+
+  /// No description provided for @hotelBookingInformation.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отель'**
+  String get hotelBookingInformation;
+
+  /// No description provided for @roomBookingInformation.
+  ///
+  /// In ru, this message translates to:
+  /// **'Номер'**
+  String get roomBookingInformation;
+
+  /// No description provided for @nutrition.
+  ///
+  /// In ru, this message translates to:
+  /// **'Питание'**
+  String get nutrition;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
