@@ -14,6 +14,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get fromPrice => 'от';
 
   @override
+  String get hotelDetailedInformationTitle => 'Об отеле';
+
+  @override
   String get amenities => 'Удобства';
 
   @override
@@ -74,24 +77,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get dataInfoAndCheckInfo => 'Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту';
 
   @override
-  String get nameLabelInput => 'Имя';
-
-  @override
-  String get surnameLabelInput => 'Фамилия';
-
-  @override
-  String get birthDayLabelInput => 'День рождения';
-
-  @override
-  String get citizenshipLabelInput => 'Гражданство';
-
-  @override
-  String get internationalPassportNumber => 'Номер загранпаспорта';
-
-  @override
-  String get passportValidityPeriod => 'Срок действия загранпаспорта';
-
-  @override
   String get addTouristTitle => 'Добавить туриста';
 
   @override
@@ -141,4 +126,40 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get touristTitle10 => 'Десятый турист';
+
+  @override
+  String get touristNameLabel => 'Имя';
+
+  @override
+  String get touristNameError => 'Введите имя';
+
+  @override
+  String get touristSonameLabel => 'Фамилия';
+
+  @override
+  String get touristSonameError => 'Введите фамилию';
+
+  @override
+  String get touristBirthdayLabel => 'Дата рождения';
+
+  @override
+  String get touristBirthdayError => 'Введите дату рождения';
+
+  @override
+  String get touristCitizenshipLabel => 'Гражданство';
+
+  @override
+  String get touristCitizenshipError => 'Укажите гражданство';
+
+  @override
+  String get touristPassportNumberLabel => 'Номер загранпаспорта';
+
+  @override
+  String get touristPassportNumberError => 'Укажите номер загранпаспорта';
+
+  @override
+  String get touristPassportDateLabel => 'Срок действия загранпаспорта';
+
+  @override
+  String get touristPassportDateError => 'Укажите срок действия загранпаспорта';
 }

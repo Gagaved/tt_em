@@ -5,6 +5,6 @@ class PaymentPage extends StatelessWidget {
   final Object? args;
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(child: Center(child: Text('payment page'),),);
   }
 }

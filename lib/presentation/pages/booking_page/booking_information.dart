@@ -10,52 +10,60 @@ class _BookingInformation extends StatelessWidget {
       roundedTopBorder: true,
       child: BlocBuilder<BookingBloc, BookingState>(
         builder: (context, state) {
-          if (state.isInit == false) return const SizedBox.shrink();
-          return Column(
-            children: [
-              const SizedBox(
-                height: 15,
-              ),
-              _RowInfo(
-                  title:
-                      AppLocalizations.of(context)!.departureBookingInformation,
-                  value: state.bookingInformation!.departure),
-              const SizedBox(
-                height: 15,
-              ),
-              _RowInfo(
-                  title: AppLocalizations.of(context)!
-                      .arrivalCountryBookingInformation,
-                  value: state.bookingInformation!.arrivalCountry),
-              const SizedBox(
-                height: 15,
-              ),
-              _RowInfo(
-                  title: AppLocalizations.of(context)!.datesBookingInformation,
-                  value:
-                      '${state.bookingInformation!.tourDateStart} - ${state.bookingInformation!.tourDateStart}'),
-              const SizedBox(
-                height: 15,
-              ),
-              _RowInfo(
-                  title: AppLocalizations.of(context)!
-                      .numberOfNightsBookingInformation,
-                  value:
-                      '${state.bookingInformation!.numberOfNights} ${AppLocalizations.of(context)!.nightsTrailingBookingInformation}'),
-              const SizedBox(
-                height: 15,
-              ),
-              _RowInfo(
-                  title: AppLocalizations.of(context)!.hotelBookingInformation,
-                  value: state.bookingInformation!.hotelName),
-              const SizedBox(
-                height: 15,
-              ),
-              _RowInfo(
-                  title: AppLocalizations.of(context)!.roomBookingInformation,
-                  value: state.bookingInformation!.room),
-              SizedBox(height: 15,),
-            ],
+          BookingInformation bookingInformation = BookingInformationMockExtension.createMock();
+          bool enabledSkeletonizer = true;
+          if(state.isInit==true){
+            enabledSkeletonizer= false;
+            bookingInformation = state.bookingInformation!;
+          }
+          return Skeletonizer(
+            enabled: enabledSkeletonizer,
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 15,
+                ),
+                _RowInfo(
+                    title:
+                        AppLocalizations.of(context)!.departureBookingInformation,
+                    value: bookingInformation.departure),
+                const SizedBox(
+                  height: 15,
+                ),
+                _RowInfo(
+                    title: AppLocalizations.of(context)!
+                        .arrivalCountryBookingInformation,
+                    value: bookingInformation.arrivalCountry),
+                const SizedBox(
+                  height: 15,
+                ),
+                _RowInfo(
+                    title: AppLocalizations.of(context)!.datesBookingInformation,
+                    value:
+                        '${bookingInformation.tourDateStart} - ${bookingInformation.tourDateStart}'),
+                const SizedBox(
+                  height: 15,
+                ),
+                _RowInfo(
+                    title: AppLocalizations.of(context)!
+                        .numberOfNightsBookingInformation,
+                    value:
+                        '${bookingInformation.numberOfNights} ${AppLocalizations.of(context)!.nightsTrailingBookingInformation}'),
+                const SizedBox(
+                  height: 15,
+                ),
+                _RowInfo(
+                    title: AppLocalizations.of(context)!.hotelBookingInformation,
+                    value: bookingInformation.hotelName),
+                const SizedBox(
+                  height: 15,
+                ),
+                _RowInfo(
+                    title: AppLocalizations.of(context)!.roomBookingInformation,
+                    value: bookingInformation.room),
+                const SizedBox(height: 15,),
+              ],
+            ),
           );
         },
       ),
@@ -72,6 +80,7 @@ class _RowInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
           flex: 4,

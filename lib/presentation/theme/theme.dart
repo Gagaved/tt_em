@@ -71,8 +71,6 @@ class RatingStyle extends ThemeExtension<RatingStyle> {
   }
 }
 
-
-
 class AppThemeDataHolder {
   static ThemeData appThemeData = ThemeData(
       extensions: const <ThemeExtension<dynamic>>[
@@ -92,10 +90,10 @@ class AppThemeDataHolder {
       ],
       useMaterial3: true,
       scaffoldBackgroundColor: AppColors.backgroundColor,
-      //highlightColor: AppColors.highlightColor,
-      //hoverColor: AppColors.hoverColor,
-      //focusColor: AppColors.focusColor,
-      //splashColor: AppColors.splashColor,
+      highlightColor: AppColors.highlightColor,
+      hoverColor: AppColors.hoverColor,
+      focusColor: AppColors.focusColor,
+      splashColor: AppColors.splashColor,
       cardTheme: const CardTheme(
         surfaceTintColor: Colors.transparent,
         color: AppColors.surfaceColor,
@@ -115,10 +113,16 @@ class AppThemeDataHolder {
       scrollbarTheme: const ScrollbarThemeData(
         thumbColor: MaterialStatePropertyAll(AppColors.primaryColor),
       ),
-      elevatedButtonTheme: const ElevatedButtonThemeData(
+      elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-            backgroundColor: MaterialStatePropertyAll(AppColors.primaryColor),
-        //overlayColor: MaterialStatePropertyAll(AppColors.primaryColor),
+        shape: MaterialStatePropertyAll(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20), // <-- Radius
+          ),
+        ),
+        backgroundColor: const MaterialStatePropertyAll(AppColors.primaryColor),
+        overlayColor: const MaterialStatePropertyAll(AppColors.highlightColor),
+            surfaceTintColor: const MaterialStatePropertyAll(AppColors.highlightColor),
       )),
       textTheme: const TextTheme(
           titleSmall: TextStyle(
@@ -130,7 +134,7 @@ class AppThemeDataHolder {
             fontFamily: 'SF Pro Display',
             fontWeight: FontWeight.w500,
             fontSize: 25,
-              height: 1.2,
+            height: 1.2,
           ),
           titleLarge: TextStyle(
             fontFamily: 'SF Pro Display',
@@ -147,12 +151,12 @@ class AppThemeDataHolder {
             fontSize: 16,
             fontWeight: FontWeight.w500,
           ),
-      bodyMedium: TextStyle(
-        fontFamily: 'SF Pro Display',
-        fontSize: 18.2,
-        height: 1.2,
-        fontWeight: FontWeight.w400,
-      )),
+          bodyMedium: TextStyle(
+            fontFamily: 'SF Pro Display',
+            fontSize: 18.2,
+            height: 1.2,
+            fontWeight: FontWeight.w400,
+          )),
       colorScheme: ColorScheme.fromSeed(
         seedColor: AppColors.primaryColor,
         primary: AppColors.primaryColor,

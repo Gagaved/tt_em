@@ -21,45 +21,39 @@ class HotelRepositoryImpl implements HotelRepository {
     // TODO: implement getBookingInformationByRoomId
     throw UnimplementedError();
   }
-
-
 }
 
 class HotelRepositoryMockImpl implements HotelRepository {
   @override
   Future<Hotel> getHotelById() async {
-    final jsonMap = {
-      "id": 1,
-      "name": "Лучший пятизвездный отель в Хургаде, Египет",
-      "address": "Madinat Makadi, Safaga Road, Makadi Bay, Египет",
-      "minimal_price": 134268,
-      "price_for_it": "За тур с перелётом",
-      "rating": 5,
-      "rating_name": "Превосходно",
-      "image_urls": [
-        "https://www.atorus.ru/sites/default/files/upload/image/News/56149/Club_Priv%C3%A9_by_Belek_Club_House.jpg",
-        "https://deluxe.voyage/useruploads/articles/The_Makadi_Spa_Hotel_02.jpg",
-        "https://deluxe.voyage/useruploads/articles/article_1eb0a64d00.jpg"
-      ],
-      "about_the_hotel": {
-        "description": "Отель VIP-класса с собственными гольф полями. Высокий уровень сервиса. Рекомендуем для респектабельного отдыха. Отель принимает гостей от 18 лет!",
-        "peculiarities": [
-          "Бесплатный Wifi на всей территории отеля",
-          "1 км до пляжа",
-          "Бесплатный фитнес-клуб",
-          "20 км до аэропорта"
-        ]
-      }
-    };
-
-    final hotel = Hotel.fromMap(jsonMap);
-    return hotel;
+    await Future.delayed(const Duration(seconds: 4));
+    return const Hotel(
+        id: 1,
+        name: "Лучший пятизвездный отель в Хургаде, Египет",
+        address: "Madinat Makadi, Safaga Road, Makadi Bay, Египет",
+        minimalPrice: 134268,
+        priceForIt: "За тур с перелётом",
+        rating: 5,
+        ratingName: "Превосходно",
+        imageUrls: [
+          "https://www.atorus.ru/sites/default/files/upload/image/News/56149/Club_Priv%C3%A9_by_Belek_Club_House.jpg",
+          "https://deluxe.voyage/useruploads/articles/The_Makadi_Spa_Hotel_02.jpg",
+          "https://deluxe.voyage/useruploads/articles/article_1eb0a64d00.jpg"
+        ],
+        aboutTheHotel: HotelDescription(
+            description:
+                "Отель VIP-класса с собственными гольф полями. Высокий уровень сервиса. Рекомендуем для респектабельного отдыха. Отель принимает гостей от 18 лет!",
+            peculiarities: [
+              "Бесплатный Wifi на всей территории отеля",
+              "1 км до пляжа",
+              "Бесплатный фитнес-клуб",
+              "20 км до аэропорта"
+            ]));
+    //return hotel;
   }
 
   @override
   Future<List<Room>> getRoomsByHotelId(int hotelId) async {
-    // Здесь вы можете загрузить данные из сети или из локального источника.
-    // В данном случае, мы будем использовать предоставленные вами данные JSON.
     final jsonMap = {
       "rooms": [
         {
@@ -94,19 +88,14 @@ class HotelRepositoryMockImpl implements HotelRepository {
     };
 
     List<Map<String, dynamic>> roomsJson = jsonMap['rooms']!;
-    // Преобразуйте данные JSON в список объектов Room
-    final List<Room> rooms = roomsJson.map((roomJson) => Room.fromMap(roomJson))
-        .toList();
-
-    // Верните список номеров
+    final List<Room> rooms =
+        roomsJson.map((roomJson) => Room.fromMap(roomJson)).toList();
+    await Future.delayed(const Duration(seconds: 4));
     return rooms;
   }
 
   @override
   Future<BookingInformation> getBookingInformationByRoomId(int roomId) async {
-    // Ваша логика для получения информации о бронировании по номеру комнаты (roomId).
-    // В данном случае, мы вернем фиктивный объект BookingInformation.
-
     final bookingInfo = BookingInformation(
       id: 1,
       hotelName: "Лучший пятизвездочный отель в Хургаде, Египет",
@@ -125,7 +114,7 @@ class HotelRepositoryMockImpl implements HotelRepository {
       serviceCharge: 2150,
     );
     // Задержка для имитации асинхронного запроса к серверу.
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 4));
 
     return bookingInfo;
   }

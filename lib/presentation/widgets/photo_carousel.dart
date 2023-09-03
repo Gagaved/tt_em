@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:tt_em/l10n/gen_l10n/app_localizations.dart';
 import 'package:tt_em/presentation/constants/colors.dart';
 
@@ -53,9 +54,8 @@ class _PhotoCarouselState extends State<PhotoCarousel> {
                 .map((refs) => CachedNetworkImage(
                       imageUrl: refs,
                       progressIndicatorBuilder:
-                          (context, url, downloadProgress) => Center(
-                              child: CircularProgressIndicator(
-                                  value: downloadProgress.progress)),
+                          (context, url, downloadProgress) => const Center(
+                              child: Center()),
                       errorWidget: (context, url, error) => Center(
                           child: Text(
                         AppLocalizations.of(context)!.loadImageErrorMessage,
@@ -68,50 +68,52 @@ class _PhotoCarouselState extends State<PhotoCarousel> {
                     ))
                 .toList(),
           ),
-          Row(
-            children: [
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(5))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: widget.imageRefs.asMap().entries.map((entry) {
-                      int dif = (_current - entry.key);
-                      double opacity;
-                      if (dif == 0) {
-                        opacity = 1;
-                      } else {
-                        opacity = 1 / (dif.abs() + 2);
-                      }
-                      //print(opacity);
-                      return GestureDetector(
-                        onTap: () => _controller.animateToPage(entry.key),
-                        child: Container(
-                          width: 10.0,
-                          height: 10.0,
-                          margin: const EdgeInsets.symmetric(
-                              vertical: 2.0, horizontal: 2.0),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: (Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? Colors.white
-                                      : Colors.black)
-                                  .withOpacity(opacity)),
-                        ),
-                      );
-                    }).toList(),
+          Skeleton.ignore(
+            child: Row(
+              children: [
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(5))),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: widget.imageRefs.asMap().entries.map((entry) {
+                        int dif = (_current - entry.key);
+                        double opacity;
+                        if (dif == 0) {
+                          opacity = 1;
+                        } else {
+                          opacity = 1 / (dif.abs() + 2);
+                        }
+                        //print(opacity);
+                        return GestureDetector(
+                          onTap: () => _controller.animateToPage(entry.key),
+                          child: Container(
+                            width: 10.0,
+                            height: 10.0,
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 2.0, horizontal: 2.0),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: (Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? Colors.white
+                                        : Colors.black)
+                                    .withOpacity(opacity)),
+                          ),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
-              ),
-              const Spacer(),
-            ],
+                const Spacer(),
+              ],
+            ),
           ),
         ],
       ),

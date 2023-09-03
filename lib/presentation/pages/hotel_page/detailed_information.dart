@@ -5,89 +5,93 @@ class _DetailedInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppContentCard(
-      roundedTopBorder: true,
-      roundedBottomBorder: true,
-      child: Container(
-        alignment: Alignment.topLeft,
-        child: const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 17,
+    return BlocBuilder<HotelBloc, HotelState>(
+      builder: (context, state) {
+        Hotel hotel = HotelMockExtension.createMock();
+        bool enabledSkeletonizer = true;
+        if (state.isInit == true) {
+          enabledSkeletonizer = false;
+          hotel = state.hotel!;
+        }
+        return AppContentCard(
+          roundedTopBorder: true,
+          roundedBottomBorder: true,
+          child: Container(
+            alignment: Alignment.topLeft,
+            child: Skeletonizer(
+              enabled: enabledSkeletonizer,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 17,
+                  ),
+                  _Title( name: hotel.name,),
+                  _Peculiarities(peculiarities: hotel.aboutTheHotel.peculiarities,),
+                  SizedBox(
+                    height: 17,
+                  ),
+                  _Description(
+                    text: hotel.aboutTheHotel.description,
+                  ),
+                  SizedBox(
+                    height: 17,
+                  ),
+                  const _DescriptionButtons(),
+                  SizedBox(
+                    height: 17,
+                  ),
+                ],
+              ),
             ),
-            _Title(),
-            _Peculiarities(),
-            SizedBox(
-              height: 10,
-            ),
-            _Description(),
-            SizedBox(
-              height: 20,
-            ),
-            _DescriptionButtons(),
-            SizedBox(
-              height: 20,
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
 
 class _Title extends StatelessWidget {
-  const _Title({Key? key}) : super(key: key);
+  const _Title({required String name, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Об отеле',
+      AppLocalizations.of(context)!.hotelDetailedInformationTitle,
       style: Theme.of(context).textTheme.titleMedium,
     );
   }
 }
 
 class _Peculiarities extends StatelessWidget {
-  const _Peculiarities({Key? key}) : super(key: key);
+  const _Peculiarities({Key? key, required this.peculiarities})
+      : super(key: key);
+  final List<String> peculiarities;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HotelBloc, HotelState>(
-      builder: (context, state) {
-        if (state.isInit == false) {
-          return const SizedBox.shrink(); //todo replace to skeleton
-        }
-        List<Widget> peculiarities = state.hotel!.aboutTheHotel.peculiarities
-            .map(
-              (e) => Padding(
-                padding: const EdgeInsets.fromLTRB(0, 8, 8, 0),
-                child: Peculiar(text: e),
-              ),
-            )
-            .toList();
-        return Wrap(children: peculiarities);
-      },
-    );
+    List<Widget> peculiaritiesW = peculiarities
+        .map(
+          (e) => Padding(
+            padding: const EdgeInsets.fromLTRB(0, 8, 8, 0),
+            child: Skeleton.unite(child: Peculiar(text: e)),
+          ),
+        )
+        .toList();
+    return Wrap(children: peculiaritiesW);
   }
 }
 
 class _Description extends StatelessWidget {
-  const _Description({Key? key}) : super(key: key);
+  const _Description({Key? key, required this.text}) : super(key: key);
+  final String text;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HotelBloc, HotelState>(
-      builder: (context, state) {
-        if (state.isInit == false) {
-          return const SizedBox.shrink(); //todo replace to skeleton
-        }
-        return Text(
-          state.hotel!.aboutTheHotel.description,
-          style: Theme.of(context).textTheme.bodyMedium!,
-        );
-      },
+    return Text(
+      text,
+      style: Theme.of(context).textTheme.bodyMedium!,
     );
   }
 }
@@ -107,6 +111,7 @@ class _DescriptionButtons extends StatelessWidget {
       child: Column(
         children: [
           _DescriptionButton(
+            leading:Image.asset('assets/close_square.png'),
             title: AppLocalizations.of(context)!.amenities,
             subtitle: AppLocalizations.of(context)!.essentials,
           ),
@@ -118,6 +123,7 @@ class _DescriptionButtons extends StatelessWidget {
             ),
           ),
           _DescriptionButton(
+            leading:Image.asset('assets/emoji_happy.png'),
             title: AppLocalizations.of(context)!.whatIsIncluded,
             subtitle: AppLocalizations.of(context)!.essentials,
           ),
@@ -126,6 +132,7 @@ class _DescriptionButtons extends StatelessWidget {
             color: AppColors.backgroundColor,
           ),
           _DescriptionButton(
+            leading:Image.asset('assets/tick_square.png'),
             title: AppLocalizations.of(context)!.whatIsNotIncluded,
             subtitle: AppLocalizations.of(context)!.essentials,
           ),
@@ -137,22 +144,26 @@ class _DescriptionButtons extends StatelessWidget {
 
 class _DescriptionButton extends StatelessWidget {
   const _DescriptionButton(
-      {Key? key, required this.title, required this.subtitle})
+      {Key? key, required this.title, required this.subtitle, required this.leading})
       : super(key: key);
   final String title;
   final String subtitle;
+  final Widget leading;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: const Icon(Icons.ios_share_sharp),
+      leading: Container(
+          width: 30,
+          height: 30,
+          child: leading),
       title: Text(title, style: Theme.of(context).textTheme.bodyMedium),
       subtitle: Text(subtitle,
           style: Theme.of(context)
               .textTheme
               .bodySmall!
               .copyWith(color: AppColors.textGrayColor)),
-      trailing: const Icon(Icons.arrow_forward_ios),
+      trailing: const Skeleton.ignore(child: Icon(Icons.arrow_forward_ios)),
     );
   }
 }

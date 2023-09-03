@@ -109,6 +109,12 @@ abstract class AppLocalizations {
   /// **'от'**
   String get fromPrice;
 
+  /// No description provided for @hotelDetailedInformationTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Об отеле'**
+  String get hotelDetailedInformationTitle;
+
   /// No description provided for @amenities.
   ///
   /// In ru, this message translates to:
@@ -229,42 +235,6 @@ abstract class AppLocalizations {
   /// **'Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту'**
   String get dataInfoAndCheckInfo;
 
-  /// No description provided for @nameLabelInput.
-  ///
-  /// In ru, this message translates to:
-  /// **'Имя'**
-  String get nameLabelInput;
-
-  /// No description provided for @surnameLabelInput.
-  ///
-  /// In ru, this message translates to:
-  /// **'Фамилия'**
-  String get surnameLabelInput;
-
-  /// No description provided for @birthDayLabelInput.
-  ///
-  /// In ru, this message translates to:
-  /// **'День рождения'**
-  String get birthDayLabelInput;
-
-  /// No description provided for @citizenshipLabelInput.
-  ///
-  /// In ru, this message translates to:
-  /// **'Гражданство'**
-  String get citizenshipLabelInput;
-
-  /// No description provided for @internationalPassportNumber.
-  ///
-  /// In ru, this message translates to:
-  /// **'Номер загранпаспорта'**
-  String get internationalPassportNumber;
-
-  /// No description provided for @passportValidityPeriod.
-  ///
-  /// In ru, this message translates to:
-  /// **'Срок действия загранпаспорта'**
-  String get passportValidityPeriod;
-
   /// No description provided for @addTouristTitle.
   ///
   /// In ru, this message translates to:
@@ -366,6 +336,78 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Десятый турист'**
   String get touristTitle10;
+
+  /// No description provided for @touristNameLabel.
+  ///
+  /// In ru, this message translates to:
+  /// **'Имя'**
+  String get touristNameLabel;
+
+  /// No description provided for @touristNameError.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите имя'**
+  String get touristNameError;
+
+  /// No description provided for @touristSonameLabel.
+  ///
+  /// In ru, this message translates to:
+  /// **'Фамилия'**
+  String get touristSonameLabel;
+
+  /// No description provided for @touristSonameError.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите фамилию'**
+  String get touristSonameError;
+
+  /// No description provided for @touristBirthdayLabel.
+  ///
+  /// In ru, this message translates to:
+  /// **'Дата рождения'**
+  String get touristBirthdayLabel;
+
+  /// No description provided for @touristBirthdayError.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите дату рождения'**
+  String get touristBirthdayError;
+
+  /// No description provided for @touristCitizenshipLabel.
+  ///
+  /// In ru, this message translates to:
+  /// **'Гражданство'**
+  String get touristCitizenshipLabel;
+
+  /// No description provided for @touristCitizenshipError.
+  ///
+  /// In ru, this message translates to:
+  /// **'Укажите гражданство'**
+  String get touristCitizenshipError;
+
+  /// No description provided for @touristPassportNumberLabel.
+  ///
+  /// In ru, this message translates to:
+  /// **'Номер загранпаспорта'**
+  String get touristPassportNumberLabel;
+
+  /// No description provided for @touristPassportNumberError.
+  ///
+  /// In ru, this message translates to:
+  /// **'Укажите номер загранпаспорта'**
+  String get touristPassportNumberError;
+
+  /// No description provided for @touristPassportDateLabel.
+  ///
+  /// In ru, this message translates to:
+  /// **'Срок действия загранпаспорта'**
+  String get touristPassportDateLabel;
+
+  /// No description provided for @touristPassportDateError.
+  ///
+  /// In ru, this message translates to:
+  /// **'Укажите срок действия загранпаспорта'**
+  String get touristPassportDateError;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
