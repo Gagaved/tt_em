@@ -85,7 +85,6 @@ class _TouristInformationCardState extends State<_TouristInformationCard> {
               child: BlocBuilder<BookingBloc, BookingState>(
                 builder: (context, state) {
                   return Column(
-                    key: ValueKey<Tourist?>(widget.tourist),
                     children: [
                       const SizedBox(
                         height: 15,

@@ -89,8 +89,8 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
       BookingDeleteTouristEvent event, Emitter<BookingState> emit) {
     final List<Tourist> newTouristList = [...state.touristsList];
     newTouristList.removeAt(event.touristIndex);
-    var newState = state.copyWith(touristsList: newTouristList);
-    emit(newState);
+    emit(state.copyWith(touristsList: newTouristList));
+    emit(state.copyWith(allFieldsSetAndValid: _isAllFieldSetAndValid()));
   }
 
   FutureOr<void> buttonPressHandler(
