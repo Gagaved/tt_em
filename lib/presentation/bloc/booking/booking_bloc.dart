@@ -168,7 +168,7 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
   ///
   ///
   /// Простая проверка в блоке на заполненность полей. Со страницы приходят только валидные поля или пустые строки.
-  /// Такая логика - временная, потому что это демо и реальная логика валидации отдельных полей должна быть здесь.
+  /// Такая логика - временная, потому что это демо.
   bool _isAllFieldSetAndValid() {
     bool result =true;
     if (_buyerMailNumber == '' || _buyerPhoneNumber == '') result=  false;
