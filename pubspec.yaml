@@ -9,9 +9,11 @@ dependencies:
   flutter:
     sdk: flutter
 
-    #
-    #
-    #tools
+  #
+  #
+  #tools
+  json_annotation: ^4.8.1
+  retrofit: ^4.0.1
   flutter_bloc: 8.1.3
   dio: 5.3.2
   get_it: 7.6.0
@@ -43,6 +45,8 @@ dependencies:
 
 
 dev_dependencies:
+  retrofit_generator: '>=5.0.0 <6.0.0'
+  json_serializable: ^6.7.1
   flutter_test:
     sdk: flutter
   build_runner:

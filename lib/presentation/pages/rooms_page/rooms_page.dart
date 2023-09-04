@@ -138,7 +138,7 @@ class _GoToBookingButton extends StatelessWidget {
         },
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20), // <-- Radius
+            borderRadius: BorderRadius.circular(15), // <-- Radius
           ),
         ),
         child: Padding(

@@ -162,4 +162,16 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get touristPassportDateError => 'Укажите срок действия загранпаспорта';
+
+  @override
+  String get sussesPaymentButton => 'Супер!';
+
+  @override
+  String get sussesPaymentInfo => 'Подтверждение заказа № может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.';
+
+  @override
+  String get sussesPaymentInfoTitle => 'Ваш заказ принят в работу';
+
+  @override
+  String get sussesPaymentPageTitle => 'Заказ оплачен';
 }

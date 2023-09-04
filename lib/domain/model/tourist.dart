@@ -1,10 +1,24 @@
-class Tourist {
+import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
+part 'tourist.g.dart';
+
+@JsonSerializable()
+class Tourist extends Equatable {
+  @JsonKey(name: 'name')
   final String name;
+  @JsonKey(name: 'surname')
   final String surname;
+  @JsonKey(name: 'birth_day')
   final String birthDay;
+  @JsonKey(name: 'citizenship')
   final String citizenship;
+  @JsonKey(name: 'international_passport_number')
   final String internationalPassportNumber;
+  @JsonKey(name: 'passport_validity_period')
   final String passportValidityPeriod;
+
+  factory Tourist.fromJson(Map<String,dynamic> json)=>_$TouristFromJson(json);
+  Map<String,dynamic> toJson() => _$TouristToJson(this);
 
 //<editor-fold desc="Data Methods">
   const Tourist({
@@ -17,16 +31,28 @@ class Tourist {
   });
 
   @override
+  List<Object> get props =>
+      [
+        name,
+        surname,
+        birthDay,
+        citizenship,
+        internationalPassportNumber,
+        passportValidityPeriod,
+      ];
+
+  @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is Tourist &&
-          runtimeType == other.runtimeType &&
-          name == other.name &&
-          surname == other.surname &&
-          birthDay == other.birthDay &&
-          citizenship == other.citizenship &&
-          internationalPassportNumber == other.internationalPassportNumber &&
-          passportValidityPeriod == other.passportValidityPeriod);
+          (other is Tourist &&
+              runtimeType == other.runtimeType &&
+              name == other.name &&
+              surname == other.surname &&
+              birthDay == other.birthDay &&
+              citizenship == other.citizenship &&
+              internationalPassportNumber ==
+                  other.internationalPassportNumber &&
+              passportValidityPeriod == other.passportValidityPeriod);
 
   @override
   int get hashCode =>
@@ -63,9 +89,9 @@ class Tourist {
       birthDay: birthDay ?? this.birthDay,
       citizenship: citizenship ?? this.citizenship,
       internationalPassportNumber:
-          internationalPassportNumber ?? this.internationalPassportNumber,
+      internationalPassportNumber ?? this.internationalPassportNumber,
       passportValidityPeriod:
-          passportValidityPeriod ?? this.passportValidityPeriod,
+      passportValidityPeriod ?? this.passportValidityPeriod,
     );
   }
 

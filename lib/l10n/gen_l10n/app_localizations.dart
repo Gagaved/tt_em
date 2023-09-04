@@ -408,6 +408,30 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Укажите срок действия загранпаспорта'**
   String get touristPassportDateError;
+
+  /// No description provided for @sussesPaymentButton.
+  ///
+  /// In ru, this message translates to:
+  /// **'Супер!'**
+  String get sussesPaymentButton;
+
+  /// No description provided for @sussesPaymentInfo.
+  ///
+  /// In ru, this message translates to:
+  /// **'Подтверждение заказа № может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.'**
+  String get sussesPaymentInfo;
+
+  /// No description provided for @sussesPaymentInfoTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ваш заказ принят в работу'**
+  String get sussesPaymentInfoTitle;
+
+  /// No description provided for @sussesPaymentPageTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Заказ оплачен'**
+  String get sussesPaymentPageTitle;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

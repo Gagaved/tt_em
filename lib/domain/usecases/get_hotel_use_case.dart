@@ -7,7 +7,7 @@ final class GetHotelUseCase extends BaseUseCase<Hotel> {
   Future<UseCaseResult<Hotel>> execute() async {
     return innerCall(() async {
       var hotelRepository = getIt<HotelRepository>();
-      Hotel hotel = await hotelRepository.getHotelById();
+      Hotel hotel = await hotelRepository.getHotel();
       return hotel;
     });
   }

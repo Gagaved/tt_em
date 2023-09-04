@@ -1,15 +1,31 @@
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
+part 'hotel.g.dart';
 
+@JsonSerializable()
 class Hotel extends Equatable {
+  @JsonKey(name: 'id')
   final int id;
+  @JsonKey(name: 'name')
   final String name;
+  @JsonKey(name: 'adress')// Составитель эндпоинта задания либо опечатался либо не знает как пишется aDDress
   final String address;
+  @JsonKey(name: 'minimal_price')
   final int minimalPrice;
+  @JsonKey(name: 'price_for_it')
   final String priceForIt;
+  @JsonKey(name: 'rating') //БОЖЕ XD horating)))
   final int rating;
+  @JsonKey(name: 'rating_name')
   final String ratingName;
+  @JsonKey(name: 'image_urls')
   final List<String> imageUrls;
+  @JsonKey(name: 'about_the_hotel')
   final HotelDescription aboutTheHotel;
+
+
+  factory Hotel.fromJson(Map<String,dynamic> json)=>_$HotelFromJson(json);
+  Map<String,dynamic> toJson() => _$HotelToJson(this);
 
 //<editor-fold desc="Data Methods">
   const Hotel({
@@ -136,9 +152,17 @@ class Hotel extends Equatable {
 //</editor-fold>
 }
 
+@JsonSerializable()
 class HotelDescription extends Equatable {
+  @JsonKey(name: 'description')
   final String description;
+  @JsonKey(name: 'peculiarities')
   final List<String> peculiarities;
+
+
+  factory HotelDescription.fromJson(Map<String,dynamic> json)=>_$HotelDescriptionFromJson(json);
+  Map<String,dynamic> toJson() => _$HotelDescriptionToJson(this);
+
 
 //<editor-fold desc="Data Methods">
   const HotelDescription({

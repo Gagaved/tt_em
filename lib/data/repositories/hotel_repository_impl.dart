@@ -1,3 +1,6 @@
+import 'package:tt_em/data/model/rooms_model.dart';
+import 'package:tt_em/data/services/api_service.dart';
+import 'package:tt_em/di/locator.dart';
 import 'package:tt_em/domain/model/booking_information.dart';
 import 'package:tt_em/domain/model/hotel.dart';
 import 'package:tt_em/domain/model/room.dart';
@@ -5,28 +8,29 @@ import 'package:tt_em/domain/repositories/hotel_repository.dart';
 
 class HotelRepositoryImpl implements HotelRepository {
   @override
-  Future<Hotel> getHotelById() async {
-    // TODO: implement getHotel
-    throw UnimplementedError();
+  Future<Hotel> getHotel() async {
+    var apiService = getIt<ApiService>();
+    return await apiService.getHotel();
   }
 
   @override
-  Future<List<Room>> getRoomsByHotelId(int hotelId) {
-    // TODO: implement getRoomsByHotelId
-    throw UnimplementedError();
+  Future<List<Room>> getRoomsByHotelId(int hotelId) async {
+    var apiService = getIt<ApiService>();
+    RoomsModel roomsModel = await apiService.getRooms();
+    return roomsModel.rooms;
   }
 
   @override
-  Future<BookingInformation> getBookingInformationByRoomId(int roomId) {
-    // TODO: implement getBookingInformationByRoomId
-    throw UnimplementedError();
+  Future<BookingInformation> getBookingInformationByRoomId(int roomId) async{
+    var apiService = getIt<ApiService>();
+    return await apiService.getBookingInformation();
   }
 }
 
 class HotelRepositoryMockImpl implements HotelRepository {
   @override
-  Future<Hotel> getHotelById() async {
-    await Future.delayed(const Duration(seconds: 4));
+  Future<Hotel> getHotel() async {
+    await Future.delayed(const Duration(seconds: 0));
     return const Hotel(
         id: 1,
         name: "Лучший пятизвездный отель в Хургаде, Египет",
@@ -51,7 +55,6 @@ class HotelRepositoryMockImpl implements HotelRepository {
             ]));
     //return hotel;
   }
-
   @override
   Future<List<Room>> getRoomsByHotelId(int hotelId) async {
     final jsonMap = {
@@ -90,7 +93,7 @@ class HotelRepositoryMockImpl implements HotelRepository {
     List<Map<String, dynamic>> roomsJson = jsonMap['rooms']!;
     final List<Room> rooms =
         roomsJson.map((roomJson) => Room.fromMap(roomJson)).toList();
-    await Future.delayed(const Duration(seconds: 4));
+    await Future.delayed(const Duration(seconds: 0));
     return rooms;
   }
 
@@ -114,7 +117,7 @@ class HotelRepositoryMockImpl implements HotelRepository {
       serviceCharge: 2150,
     );
     // Задержка для имитации асинхронного запроса к серверу.
-    await Future.delayed(const Duration(seconds: 4));
+    await Future.delayed(const Duration(seconds: 0));
 
     return bookingInfo;
   }

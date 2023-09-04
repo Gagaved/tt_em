@@ -1,21 +1,44 @@
-class BookingInformation {
-  int id;
-  String hotelName;
-  String hotelAddress;
-  int rating;
-  String ratingName;
-  String departure;
-  String arrivalCountry;
-  String tourDateStart;
-  String tourDateStop;
-  int numberOfNights;
-  String room;
-  String nutrition;
-  int tourPrice;
-  int fuelCharge;
-  int serviceCharge;
+import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
+part 'booking_information.g.dart';
 
-  BookingInformation({
+@JsonSerializable()
+class BookingInformation extends Equatable {
+  @JsonKey(name: 'id')
+  final int id;
+  @JsonKey(name: 'hotel_name')
+  final String hotelName;
+  @JsonKey(name: 'hotel_adress')// aDDress =)
+  final String hotelAddress;
+  @JsonKey(name: 'horating')//БОЖЕ XD horating)))
+  final int rating;
+  @JsonKey(name: 'rating_name')
+  final String ratingName;
+  @JsonKey(name: 'departure')
+  final String departure;
+  @JsonKey(name: 'arrival_country')
+  final String arrivalCountry;
+  @JsonKey(name: 'tour_date_start')
+  final String tourDateStart;
+  @JsonKey(name: 'tour_date_stop')
+  final String tourDateStop;
+  @JsonKey(name: 'number_of_nights')
+  final int numberOfNights;
+  @JsonKey(name: 'room')
+  final String room;
+  @JsonKey(name: 'nutrition')
+  final String nutrition;
+  @JsonKey(name: 'tour_price')
+  final int tourPrice;
+  @JsonKey(name: 'fuel_charge')
+  final int fuelCharge;
+  @JsonKey(name: 'service_charge')
+  final int serviceCharge;
+
+  factory BookingInformation.fromJson(Map<String,dynamic> json)=>_$BookingInformationFromJson(json);
+  Map<String,dynamic> toJson() => _$BookingInformationToJson(this);
+
+  const BookingInformation({
     required this.id,
     required this.hotelName,
     required this.hotelAddress,
@@ -32,44 +55,22 @@ class BookingInformation {
     required this.fuelCharge,
     required this.serviceCharge,
   });
-
-  factory BookingInformation.fromJson(Map<String, dynamic> json) {
-    return BookingInformation(
-      id: json['id'],
-      hotelName: json['hotel_name'],
-      hotelAddress: json['hotel_address'],
-      rating: json['horating'],
-      ratingName: json['rating_name'],
-      departure: json['departure'],
-      arrivalCountry: json['arrival_country'],
-      tourDateStart: json['tour_date_start'],
-      tourDateStop: json['tour_date_stop'],
-      numberOfNights: json['number_of_nights'],
-      room: json['room'],
-      nutrition: json['nutrition'],
-      tourPrice: json['tour_price'],
-      fuelCharge: json['fuel_charge'],
-      serviceCharge: json['service_charge'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'hotel_name': hotelName,
-      'hotel_address': hotelAddress,
-      'horating': rating,
-      'rating_name': ratingName,
-      'departure': departure,
-      'arrival_country': arrivalCountry,
-      'tour_date_start': tourDateStart,
-      'tour_date_stop': tourDateStop,
-      'number_of_nights': numberOfNights,
-      'room': room,
-      'nutrition': nutrition,
-      'tour_price': tourPrice,
-      'fuel_charge': fuelCharge,
-      'service_charge': serviceCharge,
-    };
-  }
+  @override
+  List<Object> get props => [
+    id,
+    hotelName,
+    hotelAddress,
+    rating,
+    ratingName,
+    departure,
+    arrivalCountry,
+    tourDateStart,
+    tourDateStop,
+    numberOfNights,
+    nutrition,
+    room,
+    tourPrice,
+    fuelCharge,
+    serviceCharge
+  ];
 }

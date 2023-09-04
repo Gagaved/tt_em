@@ -11,8 +11,6 @@ part 'booking_event.dart';
 
 part 'booking_state.dart';
 
-
-
 class BookingBloc extends Bloc<BookingEvent, BookingState> {
   final int roomId;
   String _buyerPhoneNumber = '';
@@ -20,6 +18,7 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
 
   BookingBloc(this.roomId)
       : super(const BookingState(
+          allFieldsSetAndValid: false,
           isInit: false,
           errorMessage: null,
           bookingInformation: null,
@@ -70,6 +69,7 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
   FutureOr<void> addTouristHandler(
       BookingAddTouristEvent event, Emitter<BookingState> emit) {
     var newState = state.copyWith(
+      allFieldsSetAndValid: false,
       shouldHighlightEmptyFields: false,
       touristsList: [
         ...state.touristsList,
@@ -95,13 +95,18 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
 
   FutureOr<void> buttonPressHandler(
       BookingBuyButtonPressEvent event, Emitter<BookingState> emit) {
-    // if (!_isAllFieldSet()) {
-    //   emit(state.copyWith(shouldHighlightEmptyFields: true));
-    // }
+    if (!_isAllFieldSetAndValid()) {
+      //какие то поля на странице не заданы и/или не валидны
+      emit(state.copyWith(shouldHighlightEmptyFields: true));
+    } else {
+      //все поля на странице заданы и валидны
+      //emit(state.copyWith(canBuy: true));
+    }
   }
 
-  FutureOr<void> _touristFormChangeEvent(BookingFormChangeEvent event, Emitter<BookingState> emit) {
-    switch(event.formType){
+  FutureOr<void> _touristFormChangeEvent(
+      BookingFormChangeEvent event, Emitter<BookingState> emit) {
+    switch (event.formType) {
       case FormType.phoneNumber:
         _buyerPhoneNumber = event.formValue;
         break;
@@ -109,24 +114,74 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
         _buyerMailNumber = event.formValue;
         break;
       case FormType.name:
-
-        /// i should test this
-        var changedTourist = state.touristsList[event.touristIndex!].copyWith(name: event.formValue);
-        var newTouristList = [...state.touristsList]
-          ..[event.touristIndex!]= changedTourist;
+        var changedTourist = state.touristsList[event.touristIndex!]
+            .copyWith(name: event.formValue);
+        var newTouristList = [...state.touristsList]..[event.touristIndex!] =
+            changedTourist;
         var newState = state.copyWith(touristsList: newTouristList);
         emit(newState);
         break;
       case FormType.soname:
+        var changedTourist = state.touristsList[event.touristIndex!]
+            .copyWith(surname: event.formValue);
+        var newTouristList = [...state.touristsList]..[event.touristIndex!] =
+            changedTourist;
+        var newState = state.copyWith(touristsList: newTouristList);
+        emit(newState);
         break;
       case FormType.birthday:
+        var changedTourist = state.touristsList[event.touristIndex!]
+            .copyWith(birthDay: event.formValue);
+        var newTouristList = [...state.touristsList]..[event.touristIndex!] =
+            changedTourist;
+        var newState = state.copyWith(touristsList: newTouristList);
+        emit(newState);
         break;
       case FormType.citizenship:
+        var changedTourist = state.touristsList[event.touristIndex!]
+            .copyWith(citizenship: event.formValue);
+        var newTouristList = [...state.touristsList]..[event.touristIndex!] =
+            changedTourist;
+        var newState = state.copyWith(touristsList: newTouristList);
+        emit(newState);
         break;
       case FormType.passportNumber:
+        var changedTourist = state.touristsList[event.touristIndex!]
+            .copyWith(internationalPassportNumber: event.formValue);
+        var newTouristList = [...state.touristsList]..[event.touristIndex!] =
+            changedTourist;
+        var newState = state.copyWith(touristsList: newTouristList);
+        emit(newState);
         break;
       case FormType.passportDate:
+        var changedTourist = state.touristsList[event.touristIndex!]
+            .copyWith(passportValidityPeriod: event.formValue);
+        var newTouristList = [...state.touristsList]..[event.touristIndex!] =
+            changedTourist;
+        var newState = state.copyWith(touristsList: newTouristList);
+        emit(newState);
         break;
     }
+    emit(state.copyWith(allFieldsSetAndValid: _isAllFieldSetAndValid()));
+  }
+
+  ///
+  ///
+  /// Простая проверка в блоке на заполненность полей. Со страницы приходят только валидные поля или пустые строки.
+  /// Такая логика - временная, потому что это демо и реальная логика валидации отдельных полей должна быть здесь.
+  bool _isAllFieldSetAndValid() {
+    bool result =true;
+    if (_buyerMailNumber == '' || _buyerPhoneNumber == '') result=  false;
+    for (var tourist in state.touristsList) {
+      if (tourist.name == '' ||
+          tourist.surname == '' ||
+          tourist.birthDay == '' ||
+          tourist.citizenship == '' ||
+          tourist.internationalPassportNumber == '' ||
+          tourist.passportValidityPeriod == '') {
+        result=  false;
+      }
+    }
+    return result;
   }
 }

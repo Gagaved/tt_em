@@ -1,7 +1,7 @@
 part of 'booking_page.dart';
 
 class _BuyerInformation extends StatelessWidget {
-  const _BuyerInformation({super.key});
+  const _BuyerInformation();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class _BuyerInformation extends StatelessWidget {
 }
 
 class _PhoneNumberForm extends StatelessWidget {
-  _PhoneNumberForm({super.key});
+  _PhoneNumberForm();
 
   final TextEditingController controller = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -50,7 +50,10 @@ class _PhoneNumberForm extends StatelessWidget {
           formKey: formKey,
           controller: controller,
           keyboardType: TextInputType.number,
-          onFormChange: <String>(string){
+          onFormWasInvalid: <String>(string){
+            context.read<BookingBloc>().add(const BookingFormChangeEvent(formValue: '', formType: FormType.phoneNumber));
+          },
+          onFormWasValid: <String>(string){
             context.read<BookingBloc>().add(BookingFormChangeEvent(formValue: string, formType: FormType.phoneNumber));
           },
           label: AppLocalizations.of(context)!.phoneBookingInformation,
@@ -72,7 +75,7 @@ class _PhoneNumberForm extends StatelessWidget {
 }
 
 class _EmailForm extends StatelessWidget {
-  _EmailForm({super.key});
+  _EmailForm();
 
   final TextEditingController controller = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -98,12 +101,14 @@ class _EmailForm extends StatelessWidget {
               return 'Некорректный email';
             }
           },
-          onFormChange: <String>(string){
+          onFormWasValid: <String>(string){
             context.read<BookingBloc>().add(BookingFormChangeEvent(formValue: string, formType: FormType.mail));
           },
-          label: AppLocalizations.of(context)!.emailBookingInformation,
-        );
-      },
+          onFormWasInvalid: <String>(string){
+            context.read<BookingBloc>().add(const BookingFormChangeEvent(formValue: '', formType: FormType.mail));
+          },
+          label: AppLocalizations.of(context)!.emailBookingInformation,);
+      }
     );
   }
 }

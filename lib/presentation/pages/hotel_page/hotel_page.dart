@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:tt_em/domain/model/hotel.dart';
 import 'package:tt_em/l10n/gen_l10n/app_localizations.dart';
@@ -81,7 +80,7 @@ class _GoToRoomSelectionButton extends StatelessWidget {
             },
             // style: ElevatedButton.styleFrom(
             //   shape: RoundedRectangleBorder(
-            //     borderRadius: BorderRadius.circular(20), // <-- Radius
+            //     borderRadius: BorderRadius.circular(15), // <-- Radius
             //   ),
             // ),
             child: Padding(

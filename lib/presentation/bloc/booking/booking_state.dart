@@ -7,8 +7,9 @@ class BookingState extends Equatable {
   final int? totalPrice;
   final List<Tourist> touristsList;
   final bool shouldHighlightEmptyFields;
+  final bool allFieldsSetAndValid;
   @override
-  List<Object?> get props => [isInit, errorMessage, bookingInformation,touristsList,shouldHighlightEmptyFields];
+  List<Object?> get props => [isInit, errorMessage, bookingInformation,touristsList,shouldHighlightEmptyFields,allFieldsSetAndValid];
 
 //<editor-fold desc="Data Methods">
   const BookingState({
@@ -18,6 +19,7 @@ class BookingState extends Equatable {
     this.totalPrice,
     required this.touristsList,
     required this.shouldHighlightEmptyFields,
+    required this.allFieldsSetAndValid,
   });
 
   @override
@@ -30,7 +32,8 @@ class BookingState extends Equatable {
           bookingInformation == other.bookingInformation &&
           totalPrice == other.totalPrice &&
           touristsList == other.touristsList &&
-          shouldHighlightEmptyFields == other.shouldHighlightEmptyFields);
+          shouldHighlightEmptyFields == other.shouldHighlightEmptyFields &&
+          allFieldsSetAndValid == other.allFieldsSetAndValid);
 
   @override
   int get hashCode =>
@@ -39,7 +42,8 @@ class BookingState extends Equatable {
       bookingInformation.hashCode ^
       totalPrice.hashCode ^
       touristsList.hashCode ^
-      shouldHighlightEmptyFields.hashCode;
+      shouldHighlightEmptyFields.hashCode ^
+      allFieldsSetAndValid.hashCode;
 
   @override
   String toString() {
@@ -50,6 +54,7 @@ class BookingState extends Equatable {
         ' totalPrice: $totalPrice,' +
         ' touristsList: $touristsList,' +
         ' shouldHighlightEmptyFields: $shouldHighlightEmptyFields,' +
+        ' allFieldsSetAndValid: $allFieldsSetAndValid,' +
         '}';
   }
 
@@ -60,6 +65,7 @@ class BookingState extends Equatable {
     int? totalPrice,
     List<Tourist>? touristsList,
     bool? shouldHighlightEmptyFields,
+    bool? allFieldsSetAndValid,
   }) {
     return BookingState(
       isInit: isInit ?? this.isInit,
@@ -69,6 +75,7 @@ class BookingState extends Equatable {
       touristsList: touristsList ?? this.touristsList,
       shouldHighlightEmptyFields:
           shouldHighlightEmptyFields ?? this.shouldHighlightEmptyFields,
+      allFieldsSetAndValid: allFieldsSetAndValid ?? this.allFieldsSetAndValid,
     );
   }
 
@@ -80,6 +87,7 @@ class BookingState extends Equatable {
       'totalPrice': this.totalPrice,
       'touristsList': this.touristsList,
       'shouldHighlightEmptyFields': this.shouldHighlightEmptyFields,
+      'allFieldsSetAndValid': this.allFieldsSetAndValid,
     };
   }
 
@@ -91,6 +99,7 @@ class BookingState extends Equatable {
       totalPrice: map['totalPrice'] as int,
       touristsList: map['touristsList'] as List<Tourist>,
       shouldHighlightEmptyFields: map['shouldHighlightEmptyFields'] as bool,
+      allFieldsSetAndValid: map['allFieldsSetAndValid'] as bool,
     );
   }
 

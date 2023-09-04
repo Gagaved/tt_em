@@ -1,7 +1,7 @@
 {
     "@@locale": "ru",
     "hotelPageTitle": "Отель",
-    "goToRoomSelection":  "К выбору номера",
+    "goToRoomSelection": "К выбору номера",
     "fromPrice": "от",
     "hotelDetailedInformationTitle": "Об отеле",
     "amenities": "Удобства",
@@ -52,5 +52,9 @@
     "touristPassportNumberLabel":"Номер загранпаспорта",
     "touristPassportNumberError":"Укажите номер загранпаспорта",
     "touristPassportDateLabel":"Срок действия загранпаспорта",
-    "touristPassportDateError":"Укажите срок действия загранпаспорта"
+    "touristPassportDateError":"Укажите срок действия загранпаспорта",
+    "sussesPaymentButton": "Супер!",
+    "sussesPaymentInfo":"Подтверждение заказа № может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.",
+    "sussesPaymentInfoTitle":"Ваш заказ принят в работу",
+    "sussesPaymentPageTitle":"Заказ оплачен"
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tt_em/domain/exeptions/app_exeption.dart';
+import 'package:tt_em/domain/exceptions/app_exception.dart';
 
 abstract class BaseUseCase<T> {
   @protected

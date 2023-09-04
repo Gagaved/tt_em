@@ -1,10 +1,28 @@
-class Room {
+import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
+part 'room.g.dart';
+
+@JsonSerializable()
+class Room extends Equatable {
+  @JsonKey(name: 'id')
   final int id;
+  @JsonKey(name: 'name')
   final String name;
+  @JsonKey(name: 'price')
   final int price;
+  @JsonKey(name: 'price_per')
   final String pricePer;
+  @JsonKey(name: 'peculiarities')
   final List<String> peculiarities;
+  @JsonKey(name: 'image_urls')
   final List<String> imageUrls;
+
+  factory Room.fromJson(Map<String,dynamic> json)=>_$RoomFromJson(json);
+  Map<String,dynamic> toJson() => _$RoomToJson(this);
+
+  @override
+  List<Object> get props =>
+      [id, name, price, pricePer, peculiarities, imageUrls,];
 
 //<editor-fold desc="Data Methods">
   const Room({
@@ -19,14 +37,14 @@ class Room {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is Room &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          name == other.name &&
-          price == other.price &&
-          pricePer == other.pricePer &&
-          peculiarities == other.peculiarities &&
-          imageUrls == other.imageUrls);
+          (other is Room &&
+              runtimeType == other.runtimeType &&
+              id == other.id &&
+              name == other.name &&
+              price == other.price &&
+              pricePer == other.pricePer &&
+              peculiarities == other.peculiarities &&
+              imageUrls == other.imageUrls);
 
   @override
   int get hashCode =>

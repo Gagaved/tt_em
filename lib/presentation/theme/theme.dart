@@ -117,7 +117,7 @@ class AppThemeDataHolder {
           style: ButtonStyle(
         shape: MaterialStatePropertyAll(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20), // <-- Radius
+            borderRadius: BorderRadius.circular(15), // <-- Radius
           ),
         ),
         backgroundColor: const MaterialStatePropertyAll(AppColors.primaryColor),

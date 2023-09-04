@@ -1,8 +1,7 @@
 part of 'booking_page.dart';
 
 class _TouristInformationCard extends StatefulWidget {
-  const _TouristInformationCard(
-      {required this.touristIndex, this.tourist});
+  const _TouristInformationCard({required this.touristIndex, this.tourist});
 
   final int touristIndex;
   final Tourist? tourist;
@@ -25,8 +24,10 @@ class _TouristInformationCardState extends State<_TouristInformationCard> {
   final TextEditingController sonameController = TextEditingController();
   final TextEditingController birthdayController = TextEditingController();
   final TextEditingController citizenshipController = TextEditingController();
-  final TextEditingController passportNumberController = TextEditingController();
+  final TextEditingController passportNumberController =
+      TextEditingController();
   final TextEditingController passportDateController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -90,72 +91,119 @@ class _TouristInformationCardState extends State<_TouristInformationCard> {
                         height: 15,
                       ),
                       AppForm(
-                        controller: nameController,
-                        forceValidate: state.shouldHighlightEmptyFields,
-                        formKey: nameFormKey,
-                        keyboardType: TextInputType.text,
-                        onFormChange: <String>(string){
-                          context.read<BookingBloc>().add(BookingFormChangeEvent(formValue: string, formType: FormType.name,touristIndex: widget.touristIndex));
-                        },
-                        label: AppLocalizations.of(context)!.touristNameLabel,
-                        validator: <String>(string) {
-                          if (string == null || string.length >= 1) return null;
-                          if (string.length == 0) return AppLocalizations.of(context)!.touristNameError;
-                          bool isValid = isPhoneValid(string);
-                          if (!isValid) {
-                            return AppLocalizations.of(context)!.touristNameError;
-                          }
-                        },
-                      ),
+                          controller: nameController,
+                          forceValidate: state.shouldHighlightEmptyFields,
+                          formKey: nameFormKey,
+                          keyboardType: TextInputType.text,
+                          onFormWasValid: <String>(string) {
+                            context.read<BookingBloc>().add(
+                                BookingFormChangeEvent(
+                                    formValue: string,
+                                    formType: FormType.name,
+                                    touristIndex: widget.touristIndex));
+                          },
+                          onFormWasInvalid: (value) {
+                            context.read<BookingBloc>().add(
+                                BookingFormChangeEvent(
+                                    formValue: '',
+                                    formType: FormType.name,
+                                    touristIndex: widget.touristIndex));
+                          },
+                          label: AppLocalizations.of(context)!.touristNameLabel,
+                          validator: <String>(string) {
+                            if (string == null || string.length >= 1) {
+                              return null;
+                            }
+                            if (string.length == 0) {
+                              return AppLocalizations.of(context)!
+                                  .touristNameError;
+                            }
+                            bool isValid = isPhoneValid(string);
+                            if (!isValid) {
+                              return AppLocalizations.of(context)!
+                                  .touristNameError;
+                            }
+                          }),
                       const SizedBox(
                         height: 15,
                       ),
                       AppForm(
-                        controller: sonameController,
-                        forceValidate: state.shouldHighlightEmptyFields,
-                        formKey: sonameFormKey,
-                        keyboardType: TextInputType.text,
-                        onFormChange: <String>(string){
-                          context.read<BookingBloc>().add(BookingFormChangeEvent(formValue: string, formType: FormType.soname,touristIndex: widget.touristIndex));
-                        },
-                        label: AppLocalizations.of(context)!.touristSonameLabel,
-                        validator: <String>(string) {
-                          if (string == null || string.length >= 1) return null;
-                          if (string.length == 0) return AppLocalizations.of(context)!.touristSonameError;
-                          bool isValid = isPhoneValid(string);
-                          if (!isValid) {
-                            return AppLocalizations.of(context)!.touristSonameError;
-                          }
-                        },
-                      ),
+                          controller: sonameController,
+                          forceValidate: state.shouldHighlightEmptyFields,
+                          formKey: sonameFormKey,
+                          keyboardType: TextInputType.text,
+                          onFormWasValid: <String>(string) {
+                            context.read<BookingBloc>().add(
+                                BookingFormChangeEvent(
+                                    formValue: string,
+                                    formType: FormType.soname,
+                                    touristIndex: widget.touristIndex));
+                          },
+                          onFormWasInvalid: (value) {
+                            context.read<BookingBloc>().add(
+                                BookingFormChangeEvent(
+                                    formValue: '',
+                                    formType: FormType.soname,
+                                    touristIndex: widget.touristIndex));
+                          },
+                          label:
+                              AppLocalizations.of(context)!.touristSonameLabel,
+                          validator: <String>(string) {
+                            if (string == null || string.length >= 1) {
+                              return null;
+                            }
+                            if (string.length == 0) {
+                              return AppLocalizations.of(context)!
+                                  .touristSonameError;
+                            }
+                            bool isValid = isPhoneValid(string);
+                            if (!isValid) {
+                              return AppLocalizations.of(context)!
+                                  .touristSonameError;
+                            }
+                          }),
                       const SizedBox(
                         height: 15,
                       ),
                       AppForm(
-                        controller: birthdayController,
-                        forceValidate: state.shouldHighlightEmptyFields,
-                        formKey: birthdayFormKey,
-                        keyboardType: TextInputType.datetime,
-                        onFormChange:<String>(string){
-                          context.read<BookingBloc>().add(BookingFormChangeEvent(formValue: string, formType: FormType.birthday,touristIndex: widget.touristIndex));
-                        },
-                        label: AppLocalizations.of(context)!.touristBirthdayLabel,
-                        validator: <String>(string) {
-                          print(string.length);
-                          if (string == null || string.length == 10) {
-                            return null;
-                          }
-                          if (string.length == 0) return AppLocalizations.of(context)!.touristBirthdayError;
-                          bool isValid = isPhoneValid(string);
-                          if (!isValid) {
-                            return AppLocalizations.of(context)!.touristBirthdayError;
-                          }
-                        },
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(10),
-                          DateFormatter()
-                        ],
-                      ),
+                          controller: birthdayController,
+                          forceValidate: state.shouldHighlightEmptyFields,
+                          formKey: birthdayFormKey,
+                          keyboardType: TextInputType.datetime,
+                          onFormWasValid: <String>(string) {
+                            context.read<BookingBloc>().add(
+                                BookingFormChangeEvent(
+                                    formValue: string,
+                                    formType: FormType.birthday,
+                                    touristIndex: widget.touristIndex));
+                          },
+                          onFormWasInvalid: (value) {
+                            context.read<BookingBloc>().add(
+                                BookingFormChangeEvent(
+                                    formValue: '',
+                                    formType: FormType.birthday,
+                                    touristIndex: widget.touristIndex));
+                          },
+                          label: AppLocalizations.of(context)!
+                              .touristBirthdayLabel,
+                          validator: <String>(string) {
+                            if (string == null || string.length == 10) {
+                              return null;
+                            }
+                            if (string.length == 0) {
+                              return AppLocalizations.of(context)!
+                                  .touristBirthdayError;
+                            }
+                            bool isValid = isPhoneValid(string);
+                            if (!isValid) {
+                              return AppLocalizations.of(context)!
+                                  .touristBirthdayError;
+                            }
+                          },
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(10),
+                            DateFormatter(),
+                          ]),
                       const SizedBox(
                         height: 15,
                       ),
@@ -164,13 +212,28 @@ class _TouristInformationCardState extends State<_TouristInformationCard> {
                         forceValidate: state.shouldHighlightEmptyFields,
                         formKey: citizenshipFormKey,
                         keyboardType: TextInputType.text,
-                        onFormChange:<String>(string){
-                          context.read<BookingBloc>().add(BookingFormChangeEvent(formValue: string, formType: FormType.citizenship,touristIndex: widget.touristIndex));
+                        onFormWasValid: <String>(string) {
+                          context.read<BookingBloc>().add(
+                              BookingFormChangeEvent(
+                                  formValue: string,
+                                  formType: FormType.citizenship,
+                                  touristIndex: widget.touristIndex));
                         },
-                        label:  AppLocalizations.of(context)!.touristCitizenshipLabel,
+                        onFormWasInvalid: (value) {
+                          context.read<BookingBloc>().add(
+                              BookingFormChangeEvent(
+                                  formValue: '',
+                                  formType: FormType.citizenship,
+                                  touristIndex: widget.touristIndex));
+                        },
+                        label: AppLocalizations.of(context)!
+                            .touristCitizenshipLabel,
                         validator: <String>(string) {
                           if (string == null || string.length >= 2) return null;
-                          if (string.length == 0) return AppLocalizations.of(context)!.touristCitizenshipError;
+                          if (string.length == 0) {
+                            return AppLocalizations.of(context)!
+                                .touristCitizenshipError;
+                          }
                           // todo no need bc its demo)))
                         },
                       ),
@@ -182,13 +245,28 @@ class _TouristInformationCardState extends State<_TouristInformationCard> {
                         forceValidate: state.shouldHighlightEmptyFields,
                         formKey: passportNumberFormKey,
                         keyboardType: TextInputType.number,
-                        onFormChange: <String>(string){
-                          context.read<BookingBloc>().add(BookingFormChangeEvent(formValue: string, formType: FormType.passportNumber,touristIndex: widget.touristIndex));
+                        onFormWasValid: <String>(string) {
+                          context.read<BookingBloc>().add(
+                              BookingFormChangeEvent(
+                                  formValue: string,
+                                  formType: FormType.passportNumber,
+                                  touristIndex: widget.touristIndex));
                         },
-                        label: AppLocalizations.of(context)!.touristPassportNumberLabel,
+                        onFormWasInvalid: (value) {
+                          context.read<BookingBloc>().add(
+                              BookingFormChangeEvent(
+                                  formValue: '',
+                                  formType: FormType.passportNumber,
+                                  touristIndex: widget.touristIndex));
+                        },
+                        label: AppLocalizations.of(context)!
+                            .touristPassportNumberLabel,
                         validator: <String>(string) {
-                          if (string == null || string.length >5) return null;
-                          if (string.length == 0) return AppLocalizations.of(context)!.touristPassportNumberError;
+                          if (string == null || string.length > 5) return null;
+                          if (string.length == 0) {
+                            return AppLocalizations.of(context)!
+                                .touristPassportNumberError;
+                          }
                           // todo no need bc its demo)))
                         },
                         inputFormatters: [
@@ -199,26 +277,46 @@ class _TouristInformationCardState extends State<_TouristInformationCard> {
                         height: 15,
                       ),
                       AppForm(
-                        controller:passportDateController,
-                        forceValidate: state.shouldHighlightEmptyFields,
-                        formKey:passportDateFormKey,
-                        keyboardType: TextInputType.datetime,
-                        onFormChange: <String>(string){
-                          context.read<BookingBloc>().add(BookingFormChangeEvent(formValue: string, formType: FormType.passportDate,touristIndex: widget.touristIndex));
-                        },
-                        label: AppLocalizations.of(context)!.touristPassportDateLabel,
-                        validator: <String>(string) {
-                          print(string.length);
-                          if (string == null || string.length == 10) {
-                            return null;
-                          }
-                          if (string.length == 0) return AppLocalizations.of(context)!.touristPassportDateError;
-                          bool isValid = isPhoneValid(string);
-                          if (!isValid) {
-                            AppLocalizations.of(context)!.touristPassportDateError;
-                          }
-                        },
-                      ),
+                          controller: passportDateController,
+                          forceValidate: state.shouldHighlightEmptyFields,
+                          formKey: passportDateFormKey,
+                          keyboardType: TextInputType.datetime,
+                          onFormWasValid: <String>(string) {
+                            print('send valid form: $string');
+                            context.read<BookingBloc>().add(
+                                BookingFormChangeEvent(
+                                    formValue: string,
+                                    formType: FormType.passportDate,
+                                    touristIndex: widget.touristIndex));
+                          },
+                          onFormWasInvalid: <String>(string) {
+                            print('send INvalid form: $string');
+                            context.read<BookingBloc>().add(
+                                BookingFormChangeEvent(
+                                    formValue: '',
+                                    formType: FormType.passportDate,
+                                    touristIndex: widget.touristIndex));
+                          },
+                          label: AppLocalizations.of(context)!
+                              .touristPassportDateLabel,
+                          validator: <String>(string) {
+                            if (string == null || string.length == 10) {
+                              return null;
+                            }
+                            if (string.length == 0) {
+                              return AppLocalizations.of(context)!
+                                  .touristPassportDateError;
+                            }
+                            bool isValid = isPhoneValid(string);
+                            if (!isValid) {
+                              return AppLocalizations.of(context)!
+                                  .touristPassportDateError;
+                            }
+                          },
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(10),
+                            DateFormatter(),
+                          ]),
                       const SizedBox(
                         height: 15,
                       ),

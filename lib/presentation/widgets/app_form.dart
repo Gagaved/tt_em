@@ -3,18 +3,23 @@ import 'package:flutter/services.dart';
 import 'package:tt_em/presentation/constants/colors.dart';
 
 class AppForm<T> extends StatefulWidget {
-  AppForm({super.key,
-    this.validator,
-    TextEditingController? controller,
-    required this.formKey,
-    required this.keyboardType,
-    required this.onFormChange,
-    required this.label, this.inputFormatters, this.forceValidate = false}) :
-        controller = controller ?? TextEditingController();
-  final TextEditingController? controller;
+  AppForm(
+      {super.key,
+      this.validator,
+      TextEditingController? controller,
+      required this.formKey,
+      required this.keyboardType,
+      required this.onFormWasValid,
+      required this.onFormWasInvalid,
+      required this.label,
+      this.inputFormatters,
+      this.forceValidate = false})
+      : controller = controller ?? TextEditingController();
+  final TextEditingController controller;
   final FormFieldValidator<T>? validator;
   final TextInputType keyboardType;
-  final ValueChanged<T> onFormChange;
+  final ValueChanged<T> onFormWasValid;
+  final ValueChanged<T> onFormWasInvalid;
   final GlobalKey<FormState> formKey;
   final String label;
   final bool forceValidate;
@@ -22,23 +27,32 @@ class AppForm<T> extends StatefulWidget {
 
   @override
   State<AppForm> createState() => _AppFormState();
-
 }
 
 class _AppFormState extends State<AppForm> {
   bool _validate = true;
+  bool _wasForced = false;
+  final FocusNode _focus = FocusNode();
+
+  @override
+  initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    if (widget.forceValidate) {
+    if (widget.forceValidate && _wasForced == false) {
       try {
         if (widget.formKey.currentState!.validate()) {
           _validate = true;
+          widget.onFormWasValid(widget.controller.text);
         } else {
           _validate = false;
+          widget.onFormWasInvalid(widget.controller.text);
         }
+        _wasForced = true;
       } catch (_) {
-        print("very bad error");//если ты тут то где то облажался с ключами
+        print("very bad error"); //если ты тут то где то облажался с ключами
       }
     }
     return Form(
@@ -47,36 +61,60 @@ class _AppFormState extends State<AppForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Focus(
+            focusNode: _focus,
             onFocusChange: (value) {
               if (!value) {
                 setState(() {
+                  print('field onFocusChange');
                   if (widget.formKey.currentState!.validate()) {
                     _validate = true;
+                    widget.onFormWasValid(widget.controller.text);
                   } else {
                     _validate = false;
+                    widget.onFormWasInvalid(widget.controller.text);
                   }
                 });
               }
             },
             child: TextFormField(
+              onTapOutside: (event) {
+                if (_focus.hasFocus) {
+                  setState(() {
+                    print('field onFocusChange');
+                    if (widget.formKey.currentState!.validate()) {
+                      _validate = true;
+                      widget.onFormWasValid(widget.controller.text);
+                    } else {
+                      _validate = false;
+                      widget.onFormWasInvalid(widget.controller.text);
+                    }
+                  });
+                }
+              },
+              onEditingComplete: () {
+                setState(() {
+                  print('field onEditingComplete');
+                  if (widget.formKey.currentState!.validate()) {
+                    _validate = true;
+                    widget.onFormWasValid(widget.controller.text);
+                  } else {
+                    _validate = false;
+                    widget.onFormWasInvalid(widget.controller.text);
+                  }
+                });
+              },
               validator: widget.validator,
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(),
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
               controller: widget.controller,
               decoration: InputDecoration(
                 isDense: true,
-                labelStyle: Theme
-                    .of(context)
+                labelStyle: Theme.of(context)
                     .textTheme
                     .bodyMedium!
                     .copyWith(color: AppColors.textGrayColor),
                 label: Text(
                   widget.label,
-                  style: Theme
-                      .of(context)
+                  style: Theme.of(context)
                       .textTheme
                       .bodyMedium!
                       .copyWith(color: AppColors.textGrayColor, height: 1),
@@ -118,37 +156,13 @@ class _AppFormState extends State<AppForm> {
                 filled: true,
                 fillColor: _validate
                     ? AppColors.backgroundColor
-                    : Theme
-                    .of(context)
-                    .colorScheme
-                    .error
-                    .withOpacity(0.15),
-                hintStyle: Theme
-                    .of(context)
+                    : Theme.of(context).colorScheme.error.withOpacity(0.15),
+                hintStyle: Theme.of(context)
                     .textTheme
                     .bodyMedium!
                     .copyWith(color: AppColors.textGrayColor),
               ),
               keyboardType: widget.keyboardType,
-              onEditingComplete: () {
-                setState(() {
-                  if (widget.formKey.currentState!.validate()) {
-                    _validate = true;
-                  } else {
-                    _validate = false;
-                  }
-                });
-              },
-              onFieldSubmitted: (e) {
-                setState(() {
-                  if (widget.formKey.currentState!.validate()) {
-                    _validate = true;
-                  } else {
-                    _validate = false;
-                  }
-                });
-              },
-              onChanged: widget.onFormChange,
               inputFormatters: widget.inputFormatters,
             ),
           ),
