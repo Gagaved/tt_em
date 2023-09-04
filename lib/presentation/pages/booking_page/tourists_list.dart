@@ -281,7 +281,6 @@ class _TouristInformationCardState extends State<_TouristInformationCard> {
                           formKey: passportDateFormKey,
                           keyboardType: TextInputType.datetime,
                           onFormWasValid: <String>(string) {
-                            print('send valid form: $string');
                             context.read<BookingBloc>().add(
                                 BookingFormChangeEvent(
                                     formValue: string,
@@ -289,7 +288,6 @@ class _TouristInformationCardState extends State<_TouristInformationCard> {
                                     touristIndex: widget.touristIndex));
                           },
                           onFormWasInvalid: <String>(string) {
-                            print('send INvalid form: $string');
                             context.read<BookingBloc>().add(
                                 BookingFormChangeEvent(
                                     formValue: '',

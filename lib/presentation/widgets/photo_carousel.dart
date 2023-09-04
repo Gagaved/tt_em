@@ -90,7 +90,6 @@ class _PhotoCarouselState extends State<PhotoCarousel> {
                         } else {
                           opacity = 1 / (dif.abs() + 2);
                         }
-                        //print(opacity);
                         return GestureDetector(
                           onTap: () => _controller.animateToPage(entry.key),
                           child: Container(

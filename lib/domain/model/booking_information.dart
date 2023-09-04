@@ -8,9 +8,9 @@ class BookingInformation extends Equatable {
   final int id;
   @JsonKey(name: 'hotel_name')
   final String hotelName;
-  @JsonKey(name: 'hotel_adress')// aDDress =)
+  @JsonKey(name: 'hotel_adress')
   final String hotelAddress;
-  @JsonKey(name: 'horating')//БОЖЕ XD horating)))
+  @JsonKey(name: 'horating')
   final int rating;
   @JsonKey(name: 'rating_name')
   final String ratingName;

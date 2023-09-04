@@ -42,18 +42,14 @@ class _AppFormState extends State<AppForm> {
   @override
   Widget build(BuildContext context) {
     if (widget.forceValidate && _wasForced == false) {
-      try {
-        if (widget.formKey.currentState!.validate()) {
-          _validate = true;
-          widget.onFormWasValid(widget.controller.text);
-        } else {
-          _validate = false;
-          widget.onFormWasInvalid(widget.controller.text);
-        }
-        _wasForced = true;
-      } catch (_) {
-        print("very bad error"); //если ты тут то где то облажался с ключами
+      if (widget.formKey.currentState!.validate()) {
+        _validate = true;
+        widget.onFormWasValid(widget.controller.text);
+      } else {
+        _validate = false;
+        widget.onFormWasInvalid(widget.controller.text);
       }
+      _wasForced = true;
     }
     return Form(
       key: widget.formKey,
@@ -65,7 +61,6 @@ class _AppFormState extends State<AppForm> {
             onFocusChange: (value) {
               if (!value) {
                 setState(() {
-                  print('field onFocusChange');
                   if (widget.formKey.currentState!.validate()) {
                     _validate = true;
                     widget.onFormWasValid(widget.controller.text);
@@ -80,7 +75,6 @@ class _AppFormState extends State<AppForm> {
               onTapOutside: (event) {
                 if (_focus.hasFocus) {
                   setState(() {
-                    print('field onFocusChange');
                     if (widget.formKey.currentState!.validate()) {
                       _validate = true;
                       widget.onFormWasValid(widget.controller.text);
@@ -93,7 +87,6 @@ class _AppFormState extends State<AppForm> {
               },
               onEditingComplete: () {
                 setState(() {
-                  print('field onEditingComplete');
                   if (widget.formKey.currentState!.validate()) {
                     _validate = true;
                     widget.onFormWasValid(widget.controller.text);

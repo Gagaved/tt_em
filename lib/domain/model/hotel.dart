@@ -8,13 +8,13 @@ class Hotel extends Equatable {
   final int id;
   @JsonKey(name: 'name')
   final String name;
-  @JsonKey(name: 'adress')// Составитель эндпоинта задания либо опечатался либо не знает как пишется aDDress
+  @JsonKey(name: 'adress')
   final String address;
   @JsonKey(name: 'minimal_price')
   final int minimalPrice;
   @JsonKey(name: 'price_for_it')
   final String priceForIt;
-  @JsonKey(name: 'rating') //БОЖЕ XD horating)))
+  @JsonKey(name: 'rating')
   final int rating;
   @JsonKey(name: 'rating_name')
   final String ratingName;
